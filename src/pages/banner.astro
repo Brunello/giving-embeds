@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Giving to Columbia Banner">
+	<main>
+        <div class="banner-container">
+            <div class="banner-content">
+                <div class="countdown">
+                    <span>88D</span>
+                    <span>14H</span>
+                    <span>01M</span>
+                    <span>21S</span>
+                </div>
+                <p><strong>Save the date.</strong> Columbia Giving Day is almost here!</p>
+            </div>
+            <div class="cta-container">
+                <a class="cta" href="https://givingday.columbia.edu/">
+                    <span class="cta-text">Learn More</span>
+                </a>
+                <button id="close">X</button>
+            </div>
+        </div>
+	</main>
+</Layout>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .banner-container {
+        background-color: #003373;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10%;
+        /* position: fixed; */
+        /* top: 0; */
+        /* left: 0; */
+        width: calc(100% - 20%);
+    }
+
+    .banner-container.closed {
+        display: none;
+    }
+
+    .banner-content {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .countdown {
+        display: flex;
+        gap: 6px;
+    }
+
+    .countdown span {
+        border: 2px solid #6DACDE;
+        padding: 5px 7px;
+        font-weight: bold;
+    }
+
+    .cta-container {
+        display: flex;
+        align-items: center;
+        gap: 35px;
+    }
+
+    .cta-container .cta {
+        background-color: #FED302;
+        color: #003373;
+        padding: 5px 24px;
+        font-size: 16px;
+        text-decoration: none;
+        font-weight: bold;
+        font-family: proxima-nova, sans-serif;
+    }
+
+    #close {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #003373;
+        border: 1px solid #fff;
+        color: #fff;
+        font-size: 8px;
+        padding-inline: 0;
+        padding-top: 2px;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    const close = document.getElementById('close');
+    const banner = document.querySelector('.banner-container');
+    let date = new Date();
+
+    if (document.cookie.includes('banner=closed')) {
+        banner.classList.add('closed');
+    }
+
+    close.addEventListener('click', () => {
+        
+        banner.classList.add('closed');
+        document.cookie = "banner=closed; expires=" + date.setDate(date.getDate() + 1);;
+    });
+</script>
