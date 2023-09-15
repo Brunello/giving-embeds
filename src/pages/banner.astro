@@ -7,10 +7,10 @@ import Layout from '../layouts/Layout.astro';
         <div class="banner-container">
             <div class="banner-content">
                 <div class="countdown">
-                    <span>88D</span>
-                    <span>14H</span>
-                    <span>01M</span>
-                    <span>21S</span>
+                    <span id="days">88D</span>
+                    <span id="hours">14H</span>
+                    <span id="minutes">01M</span>
+                    <span id="seconds">21S</span>
                 </div>
                 <p><strong>Save the date.</strong> Columbia Giving Day is almost here!</p>
             </div>
@@ -94,17 +94,53 @@ import Layout from '../layouts/Layout.astro';
 </style>
 
 <script>
-    const close = document.getElementById('close');
-    const banner = document.querySelector('.banner-container');
-    let date = new Date();
+    const close = document.getElementById('close') as HTMLElement;
+    const banner = document.querySelector('.banner-container') as HTMLElement;
+    let date: Date = new Date();
 
     if (document.cookie.includes('banner=closed')) {
         banner.classList.add('closed');
     }
 
     close.addEventListener('click', () => {
-        
         banner.classList.add('closed');
         document.cookie = "banner=closed; expires=" + date.setDate(date.getDate() + 1);;
     });
+
+    if (document.querySelector('.page-id-1144') || document.querySelector('.page-id-1145') || document.querySelector('.page-id-1146') || document.querySelector('.page-id-1147') || document.querySelector('.page-id-1148') || document.querySelector('.page-id-1149')) {
+        document.querySelector('.menu-item-1156').classList.add('current_page_item');
+    }
+
+    var end: Date = new Date('10/25/2023 00:00 AM');
+
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer: number;
+
+    function showRemaining() {
+        var now: Date = new Date();
+        var distance: number = end - now;
+        if (distance < 0) {
+            clearInterval(timer);
+            return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+
+        const daysElement = document.getElementById('days') as HTMLElement;
+        const hoursElement = document.getElementById('hours') as HTMLElement;
+        const minutesElement = document.getElementById('minutes') as HTMLElement;
+        const secondsElement = document.getElementById('seconds') as HTMLElement;
+
+        daysElement.innerHTML = days + 'D';
+        hoursElement.innerHTML = hours + 'H';
+        minutesElement.innerHTML = minutes + 'M';
+        secondsElement.innerHTML = seconds + 'S';
+    }
+    timer = setInterval(showRemaining, 1000);
+
 </script>
