@@ -91,6 +91,32 @@ import Layout from '../layouts/Layout.astro';
         padding-top: 2px;
         cursor: pointer;
     }
+
+    @media screen and (max-width: 990px) {
+        .banner-container {
+            padding: 1em 2em;
+            width: calc(100% - 4em);
+            flex-direction: column;
+            justify-content: unset;
+            align-items: center;
+            gap: 1em;
+        }
+        .banner-content {
+            flex-direction: column;
+        }
+        .countdown {
+            order: 2;
+        }
+        .banner-content p {
+            margin: 0;
+            text-align: center;
+        }
+        #close {
+            position: absolute;
+            top: 1.5em;
+            right: 1.5em;
+        }
+    }
 </style>
 
 <script>
@@ -142,5 +168,14 @@ import Layout from '../layouts/Layout.astro';
         secondsElement.innerHTML = seconds + 'S';
     }
     timer = setInterval(showRemaining, 1000);
+
+    function setWindowHeight(){
+        var contentHeight = document.querySelector('body').offsetHeight;
+        // document.body.style.height = windowHeight + "px";
+        // resize window to fit height
+        window.resizeTo(1000, contentHeight);
+        console.log(contentHeight);
+    }
+    window.addEventListener("resize",setWindowHeight,false);
 
 </script>
