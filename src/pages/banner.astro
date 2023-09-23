@@ -118,22 +118,11 @@ import Layout from '../layouts/Layout.astro';
 
 <script>
     const close = document.getElementById('close') as HTMLElement;
-    const banner = document.querySelector('.banner-container') as HTMLElement;
     let date: Date = new Date();
 
-    if (document.cookie.includes('banner=closed')) {
-        banner.classList.add('closed');
-    }
-
     close.addEventListener('click', () => {
-        banner.classList.add('closed');
         window.parent.postMessage("banner closed", "*");
-        document.cookie = "banner=closed; expires=" + date.setDate(date.getDate() + 1);
     });
-
-    if (document.querySelector('.page-id-1144') || document.querySelector('.page-id-1145') || document.querySelector('.page-id-1146') || document.querySelector('.page-id-1147') || document.querySelector('.page-id-1148') || document.querySelector('.page-id-1149')) {
-        document.querySelector('.menu-item-1156').classList.add('current_page_item');
-    }
 
     var end: Date = new Date('10/25/2023 00:00 AM');
 
@@ -164,8 +153,6 @@ import Layout from '../layouts/Layout.astro';
         hoursElement.innerHTML = hours + 'H';
         minutesElement.innerHTML = minutes + 'M';
         secondsElement.innerHTML = seconds + 'S';
-
-        // const value = ('; '+document.cookie).split(`; banner=`).pop().split(';')[0];
     }
     timer = setInterval(showRemaining, 1000);
 

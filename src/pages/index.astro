@@ -124,16 +124,24 @@ import Card from '../components/Card.astro';
 
 
 <!-- Banner GTM code -->
-<script type="text/javascript">
-	var iframe = document.createElement("iframe");
-	var body = document.querySelector('body');
-	iframe.src = "https://giving-embeds.vercel.app/banner";
-	iframe.setAttribute("id", "giving-banner");
-	document.body.insertBefore(iframe, body.firstChild);
+<!-- <script type="text/javascript">
+	if (!document.cookie.includes('giving_banner_closed=1')) {
+		var iframe = document.createElement("iframe");
+		var body = document.querySelector('body');
+		iframe.src = "https://giving-embeds.vercel.app/banner";
+		iframe.setAttribute("id", "giving-banner");
+		document.body.insertBefore(iframe, body.firstChild);
 
-	window.addEventListener('message', function(event) {
-		console.log("Message received from the child: " + event.data); // Message received from child
-	});
+		window.addEventListener('message', function(event) {
+			if (event.data === 'banner closed') {
+				console.log('event received');
+				var date = new Date();
+				document.getElementById('giving-banner').style.display = 'none';
+				document.cookie = "giving_banner_closed=1; expires=" + date.setDate(date.getDate() + 1);
+			}
+			console.log(event.data); // Message received from child
+		});
+	}
 </script>
 <style>
 	#giving-banner {
@@ -151,4 +159,4 @@ import Card from '../components/Card.astro';
 			height: 160px;
 		}
 	}
-</style>
+</style> -->
