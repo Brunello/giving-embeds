@@ -7,10 +7,10 @@ import Layout from '../layouts/Layout.astro';
         <div class="banner-container">
             <div class="banner-content">
                 <div class="countdown">
-                    <span id="days">88D</span>
-                    <span id="hours">14H</span>
-                    <span id="minutes">01M</span>
-                    <span id="seconds">21S</span>
+                    <span id="days"></span>
+                    <span id="hours"></span>
+                    <span id="minutes"></span>
+                    <span id="seconds"></span>
                 </div>
                 <p><strong>Save the date.</strong> Columbia Giving Day is almost here!</p>
             </div>
@@ -36,9 +36,6 @@ import Layout from '../layouts/Layout.astro';
         display: flex;
         justify-content: space-between;
         padding: 0 10%;
-        /* position: fixed; */
-        /* top: 0; */
-        /* left: 0; */
         width: calc(100% - 20%);
     }
 
@@ -130,7 +127,8 @@ import Layout from '../layouts/Layout.astro';
 
     close.addEventListener('click', () => {
         banner.classList.add('closed');
-        document.cookie = "banner=closed; expires=" + date.setDate(date.getDate() + 1);;
+        window.parent.postMessage("banner closed", "*");
+        document.cookie = "banner=closed; expires=" + date.setDate(date.getDate() + 1);
     });
 
     if (document.querySelector('.page-id-1144') || document.querySelector('.page-id-1145') || document.querySelector('.page-id-1146') || document.querySelector('.page-id-1147') || document.querySelector('.page-id-1148') || document.querySelector('.page-id-1149')) {
@@ -166,16 +164,9 @@ import Layout from '../layouts/Layout.astro';
         hoursElement.innerHTML = hours + 'H';
         minutesElement.innerHTML = minutes + 'M';
         secondsElement.innerHTML = seconds + 'S';
+
+        // const value = ('; '+document.cookie).split(`; banner=`).pop().split(';')[0];
     }
     timer = setInterval(showRemaining, 1000);
-
-    function setWindowHeight(){
-        var contentHeight = document.querySelector('body').offsetHeight;
-        // document.body.style.height = windowHeight + "px";
-        // resize window to fit height
-        window.resizeTo(1000, contentHeight);
-        console.log(contentHeight);
-    }
-    window.addEventListener("resize",setWindowHeight,false);
 
 </script>
