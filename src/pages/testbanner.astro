@@ -1,0 +1,165 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Giving to Columbia Banner">
+	<main>
+        <div class="banner-container">
+            <div class="banner-content">
+                <div class="countdown">
+                    <span id="days"></span>
+                    <span id="hours"></span>
+                    <span id="minutes"></span>
+                    <span id="seconds"></span>
+                </div>
+                <p><strong>Save the date.</strong> Columbia Giving Day is almost here!</p>
+            </div>
+            <div class="cta-container">
+                <a class="cta" href="#">
+                    <span class="cta-text">Learn More</span>
+                </a>
+                <button id="close">X</button>
+            </div>
+        </div>
+	</main>
+</Layout>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .banner-container {
+        background-color: #003373;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10%;
+        width: calc(100% - 20%);
+    }
+
+    .banner-container.closed {
+        display: none;
+    }
+
+    .banner-content {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .countdown {
+        display: flex;
+        gap: 6px;
+    }
+
+    .countdown span {
+        border: 2px solid #6DACDE;
+        padding: 5px 7px;
+        font-weight: bold;
+    }
+
+    .cta-container {
+        display: flex;
+        align-items: center;
+        gap: 35px;
+    }
+
+    .cta-container .cta {
+        background-color: #FED302;
+        color: #003373;
+        padding: 5px 24px;
+        font-size: 16px;
+        text-decoration: none;
+        font-weight: bold;
+        font-family: proxima-nova, sans-serif;
+    }
+
+    #close {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #003373;
+        border: 1px solid #fff;
+        color: #fff;
+        font-size: 8px;
+        padding-inline: 0;
+        padding-top: 2px;
+        cursor: pointer;
+    }
+
+    @media screen and (max-width: 990px) {
+        .banner-container {
+            padding: 1em 2em;
+            width: calc(100% - 4em);
+            flex-direction: column;
+            justify-content: unset;
+            align-items: center;
+            gap: 1em;
+        }
+        .banner-content {
+            flex-direction: column;
+        }
+        .countdown {
+            order: 2;
+        }
+        .banner-content p {
+            margin: 0;
+            text-align: center;
+        }
+        #close {
+            position: absolute;
+            top: 1.5em;
+            right: 1.5em;
+        }
+    }
+
+    .banner-container * {
+        color: #003373;
+        border-color: #003373 !important;
+        background: #003373 !important;
+    }
+</style>
+
+<script>
+    const close = document.getElementById('close') as HTMLElement;
+    let date: Date = new Date();
+
+    close.addEventListener('click', () => {
+        window.parent.postMessage("banner closed", "*");
+    });
+
+    var end: Date = new Date('10/25/2023 00:00 AM');
+
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer: number;
+
+    function showRemaining() {
+        var now: Date = new Date();
+        var distance: number = end - now;
+        if (distance < 0) {
+            clearInterval(timer);
+            return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+
+        const daysElement = document.getElementById('days') as HTMLElement;
+        const hoursElement = document.getElementById('hours') as HTMLElement;
+        const minutesElement = document.getElementById('minutes') as HTMLElement;
+        const secondsElement = document.getElementById('seconds') as HTMLElement;
+
+        daysElement.innerHTML = days + 'D';
+        hoursElement.innerHTML = hours + 'H';
+        minutesElement.innerHTML = minutes + 'M';
+        secondsElement.innerHTML = seconds + 'S';
+    }
+    timer = setInterval(showRemaining, 1000);
+
+</script>
