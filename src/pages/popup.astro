@@ -1,22 +1,31 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Giving to Columbia Popup">
-	<main>
+    <main>
         <div class="popup-container">
             <div class="popup">
-                <div class="popup-image"><img src="/src/assets/columbia-giving-day-logo.png"></div>
+                <div class="popup-image">
+                    <img src="/src/assets/columbia-giving-day-logo.png" />
+                </div>
                 <div class="popup-content">
                     <span>Wednesday, October 25, 2023</span>
                     <h2>Mark your calendar for Columbia Giving Day</h2>
-                    <p>Together, we make a transformative impact. Join your Columbia community in changing the lives of the students, faculty, and researchers changing the world.</p>
-                    <a href="https://calendar.google.com/calendar/u/0/r/eventedit?dates=20231025/20231026&details=On+Wednesday,+October+25,+2023,+members+of+our+University-wide+community+from+across+the+globe+will+come+together+to+support+their+favorite+Columbia+schools,+programs,+and+causes.&location=https://givingday.columbia.edu&text=Columbia+Giving+Day+2023" class="btn btn-primary">Save The Date</a>
+                    <p>
+                        Together, we make a transformative impact. Join your
+                        Columbia community in changing the lives of the
+                        students, faculty, and researchers changing the world.
+                    </p>
+                    <a
+                        href="https://calendar.google.com/calendar/u/0/r/eventedit?dates=20231025/20231026&details=On+Wednesday,+October+25,+2023,+members+of+our+University-wide+community+from+across+the+globe+will+come+together+to+support+their+favorite+Columbia+schools,+programs,+and+causes.&location=https://givingday.columbia.edu&text=Columbia+Giving+Day+2023"
+                        class="btn btn-primary">Save The Date</a
+                    >
                 </div>
                 <div id="close" class="close">x</div>
             </div>
         </div>
-	</main>
+    </main>
 </Layout>
 
 <style>
@@ -29,7 +38,7 @@ import Layout from '../layouts/Layout.astro';
         left: 0;
         width: 100%;
         height: 100vh;
-        background-color: rgba(0,0,0,.5);
+        background-color: rgba(0, 0, 0, 0.5);
         z-index: 9999;
         display: flex;
         align-items: center;
@@ -63,22 +72,22 @@ import Layout from '../layouts/Layout.astro';
     }
     .popup-content span {
         /* font-family: gotham; */
-        color: #055EA9;
+        color: #055ea9;
         font-weight: 500;
         font-size: 24px;
         line-height: 1.33;
         padding-bottom: 14px;
     }
     .popup-content h2 {
-        font-size: 42px;
+        font-size: 40px;
         line-height: 1.125;
         font-weight: 700;
         color: #003373;
         letter-spacing: -0.75px;
-        padding: 0 15px 14px;
+        padding: 0 75px 14px;
     }
     .popup-content p {
-        font-size: 21px;
+        font-size: 18px;
         font-weight: 300;
         line-height: 1.421;
         color: #000;
@@ -86,9 +95,9 @@ import Layout from '../layouts/Layout.astro';
     }
     .popup-content a {
         padding: 13px 29px;
-        background-color: #FED302;
+        background-color: #fed302;
         color: #003373;
-        font-size: 18px;
+        font-size: 16px;
         text-decoration: none;
         font-weight: 700;
     }
@@ -98,7 +107,7 @@ import Layout from '../layouts/Layout.astro';
         right: 0;
         font-size: 20px;
         color: #fff;
-        background: #2372B4;
+        background: #2372b4;
         padding: 4.5px 11px;
         border-radius: 50%;
         cursor: pointer;
@@ -107,27 +116,31 @@ import Layout from '../layouts/Layout.astro';
     @media (max-width: 767px) {
         .popup {
             max-width: calc(90vw - 48px);
-            padding: 107px 24px 56px
+            padding: 107px 24px 56px;
         }
         .popup-content span {
-            font-size: 22px;
+            font-size: 18px;
         }
         .popup-content h2 {
-            font-size: 36px;
+            font-size: 34px;
+            padding: 0 5px 14px;
         }
         .popup-content p {
-            font-size: 18px;
+            font-size: 16px;
         }
     }
 </style>
 
 <script>
-    const close = document.getElementById('close') as HTMLElement;
-    const popupContainer = document.querySelector('.popup-container') as HTMLElement;
+    const close = document.getElementById("close") as HTMLElement;
+    const popupContainer = document.querySelector(
+        ".popup-container"
+    ) as HTMLElement;
     let date: Date = new Date();
 
-    close.addEventListener('click', () => {
-        popupContainer.style.display = 'none';
-        document.cookie = "givingpopup=closed; expires=" + date.setDate(date.getDate() + 1); 
+    close.addEventListener("click", () => {
+        popupContainer.style.display = "none";
+        document.cookie =
+            "givingpopup=closed; expires=" + date.setDate(date.getDate() + 1);
     });
 </script>

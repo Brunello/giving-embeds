@@ -1,9 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Giving to Columbia Banner">
-	<main>
+    <main>
         <div class="banner-container">
             <div class="banner-content">
                 <div class="countdown">
@@ -12,16 +12,19 @@ import Layout from '../layouts/Layout.astro';
                     <span id="minutes">00M</span>
                     <span id="seconds">00S</span>
                 </div>
-                <p>Columbia Giving Day is Wedensday, October 25</p>
+                <p>Columbia Giving Day is Wednesday, October 25</p>
             </div>
             <div class="cta-container">
-                <a class="cta" href="https://givingday.columbia.edu/pages/columbia-giving-day-home?utm_source=CUmagazine&utm_medium=website&utm_campaign=CGD2023banner">
+                <a
+                    class="cta"
+                    href="https://givingday.columbia.edu/pages/columbia-giving-day-home?utm_source=CUmagazine&utm_medium=website&utm_campaign=CGD2023banner"
+                >
                     <span class="cta-text">Learn More</span>
                 </a>
                 <button id="close">X</button>
             </div>
         </div>
-	</main>
+    </main>
 </Layout>
 
 <style>
@@ -55,7 +58,7 @@ import Layout from '../layouts/Layout.astro';
     }
 
     .countdown span {
-        border: 2px solid #007D8E;
+        border: 2px solid #007d8e;
         padding: 5px 7px;
         font-weight: bold;
     }
@@ -67,7 +70,7 @@ import Layout from '../layouts/Layout.astro';
     }
 
     .cta-container .cta {
-        background-color: #007D8E;
+        background-color: #007d8e;
         color: #fff;
         padding: 5px 24px;
         font-size: 16px;
@@ -114,14 +117,14 @@ import Layout from '../layouts/Layout.astro';
 </style>
 
 <script>
-    const close = document.getElementById('close') as HTMLElement;
+    const close = document.getElementById("close") as HTMLElement;
     let date: Date = new Date();
 
-    close.addEventListener('click', () => {
+    close.addEventListener("click", () => {
         window.parent.postMessage("banner closed", "*");
     });
 
-    var end: Date = new Date('10/25/2023 00:00 AM');
+    var end: Date = new Date("10/25/2023 00:00 AM");
 
     var _second = 1000;
     var _minute = _second * 60;
@@ -141,16 +144,19 @@ import Layout from '../layouts/Layout.astro';
         var minutes = Math.floor((distance % _hour) / _minute);
         var seconds = Math.floor((distance % _minute) / _second);
 
-        const daysElement = document.getElementById('days') as HTMLElement;
-        const hoursElement = document.getElementById('hours') as HTMLElement;
-        const minutesElement = document.getElementById('minutes') as HTMLElement;
-        const secondsElement = document.getElementById('seconds') as HTMLElement;
+        const daysElement = document.getElementById("days") as HTMLElement;
+        const hoursElement = document.getElementById("hours") as HTMLElement;
+        const minutesElement = document.getElementById(
+            "minutes"
+        ) as HTMLElement;
+        const secondsElement = document.getElementById(
+            "seconds"
+        ) as HTMLElement;
 
-        daysElement.innerHTML = days + 'D';
-        hoursElement.innerHTML = hours + 'H';
-        minutesElement.innerHTML = minutes + 'M';
-        secondsElement.innerHTML = seconds + 'S';
+        daysElement.innerHTML = days + "D";
+        hoursElement.innerHTML = hours + "H";
+        minutesElement.innerHTML = minutes + "M";
+        secondsElement.innerHTML = seconds + "S";
     }
     timer = setInterval(showRemaining, 1000);
-
 </script>

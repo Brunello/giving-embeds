@@ -1,0 +1,38 @@
+<script type="text/javascript">
+if (!document.cookie.includes("giving_banner_closed=1")) {
+    var iframe = document.createElement("iframe");
+    var body = document.querySelector("body");
+    iframe.src = "https://giving-embeds.vercel.app/testbanner";
+    iframe.setAttribute("id", "giving-banner");
+    document.body.insertBefore(iframe, body.firstChild);
+
+    window.addEventListener("message", function (event) {
+        if (event.data === "banner closed") {
+            var date = new Date();
+            document.getElementById("giving-banner").style.display = "none";
+            // document.cookie = "giving_banner_closed=1; expires=" + date.setDate(date.getDate() + 1);
+        }
+        console.log(event.data);
+    });
+}
+</script>
+<style>
+    #giving-banner {
+        width: 100%;
+        height: 51px;
+        border: 0;
+    }
+    body:not(.back-to-top-shown) .header-wrapper {
+        top: 51px !important;
+    }
+    @media screen and (max-width: 1005px) {
+        #giving-banner {
+            height: 142px;
+        }
+    }
+    @media screen and (max-width: 420px) {
+        #giving-banner {
+            height: 160px;
+        }
+    }
+</style>
