@@ -7,15 +7,15 @@ import Layout from '../layouts/Layout.astro';
         <div class="banner-container">
             <div class="banner-content">
                 <div class="countdown">
-                    <span id="days"></span>
-                    <span id="hours"></span>
-                    <span id="minutes"></span>
-                    <span id="seconds"></span>
+                    <span id="days">00D</span>
+                    <span id="hours">00H</span>
+                    <span id="minutes">00M</span>
+                    <span id="seconds">00S</span>
                 </div>
-                <p><strong>Save the date.</strong> Columbia Giving Day is almost here!</p>
+                <p>Columbia Giving Day is Wedensday, October 25</p>
             </div>
             <div class="cta-container">
-                <a class="cta" href="#">
+                <a class="cta" href="https://givingday.columbia.edu/pages/columbia-giving-day-home?utm_source=CAA&utm_medium=website&utm_campaign=CGD2023banner">
                     <span class="cta-text">Learn More</span>
                 </a>
                 <button id="close">X</button>
@@ -101,9 +101,6 @@ import Layout from '../layouts/Layout.astro';
         .banner-content {
             flex-direction: column;
         }
-        .countdown {
-            order: 2;
-        }
         .banner-content p {
             margin: 0;
             text-align: center;
@@ -113,12 +110,6 @@ import Layout from '../layouts/Layout.astro';
             top: 1.5em;
             right: 1.5em;
         }
-    }
-
-    .banner-container * {
-        color: #003373;
-        border-color: #003373 !important;
-        background: #003373 !important;
     }
 </style>
 
