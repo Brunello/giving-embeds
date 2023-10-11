@@ -19,7 +19,7 @@ window.addEventListener("load", function (event) {
     }
 });
 if (
-    !document.cookie.includes("giving_popup_closed=1") ||
+    !document.cookie.includes("giving_popup_closed=1") &&
     parseInt(getCookie("pages_visited")) >= 2
 ) {
     var iframe = document.createElement("iframe");

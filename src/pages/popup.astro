@@ -144,6 +144,7 @@ import GivingDayLogo from "../assets/columbia-giving-day-logo.png";
 
     close.addEventListener("click", () => {
         popupContainer.style.display = "none";
+        window.parent.postMessage("popup closed", "*");
         document.cookie =
             "givingpopup=closed; expires=" + date.setDate(date.getDate() + 1);
     });
