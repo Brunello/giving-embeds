@@ -1,3 +1,18 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Giving to Columbia Banner">
+    <main>
+        <div
+            class="dummy content"
+            style="width: 95vw; height: 95vw; display: flex; align-items: center; justify-content: center; background-color: yellow; border-radius: 5%; margin: 0 auto;"
+        >
+            Lorem Ipsum
+        </div>
+    </main>
+</Layout>
+
 <script type="text/javascript">
 if (!document.cookie.includes("giving_banner_closed=1")) {
     var iframe = document.createElement("iframe");
@@ -17,21 +32,43 @@ if (!document.cookie.includes("giving_banner_closed=1")) {
         console.log(event.data);
     });
 }
+window.addEventListener("scroll", function () {
+    var scrollTop = window.scrollY;
+    if (scrollTop > 160) {
+        document.querySelector("#header").style.top = "0px";
+        document.getElementById("giving-banner").style.display = "none";
+    } else {
+        document.querySelector("#header").style.removeProperty("top");
+        document.getElementById("giving-banner").style.display = "block";
+    }
+});
 </script>
 <style>
     #giving-banner {
-        width: 100%;
+        width: 100vw;
         height: 51px;
         border: 0;
+        position: fixed;
+        top: 0;
+        z-index: 101;
+    }
+    body:has(#giving-banner) #header {
+        top: 51px;
     }
     @media screen and (max-width: 1005px) {
         #giving-banner {
             height: 142px;
         }
+        body:has(#giving-banner) #header {
+            top: 142px;
+        }
     }
     @media screen and (max-width: 420px) {
         #giving-banner {
             height: 160px;
+        }
+        body:has(#giving-banner) #header {
+            top: 160px;
         }
     }
 </style>

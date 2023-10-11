@@ -1,0 +1,65 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Giving to Columbia Banner">
+    <main>
+        <div
+            class="dummy content"
+            style="width: 95vw; height: 95vw; display: flex; align-items: center; justify-content: center; background-color: yellow; border-radius: 5%; margin: 0 auto;"
+        >
+            Lorem Ipsum
+        </div>
+    </main>
+</Layout>
+
+<script type="text/javascript">
+function getCookie(name) {
+    var value = document.cookie;
+    var parts = value.split(name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+}
+window.addEventListener("load", function (event) {
+    if (
+        !document.cookie.includes("pages_visited") ||
+        document.cookie.includes("pages_visited=1")
+    ) {
+        var pages_visited = getCookie("pages_visited");
+        document.cookie =
+            "pages_visited=" +
+            (parseInt(pages_visited) + 1) +
+            "; expires=" +
+            new Date().setDate(new Date().getDate() + 1);
+    }
+});
+if (
+    !document.cookie.includes("giving_popup_closed=1") ||
+    parseInt(getCookie("pages_visited")) >= 2
+) {
+    var iframe = document.createElement("iframe");
+    iframe.src = "https://giving-embeds.vercel.app/popup";
+    iframe.setAttribute("id", "giving-popup");
+    document.body.appendChild(iframe);
+
+    window.addEventListener("message", function (event) {
+        if (event.data === "popup closed") {
+            var date = new Date();
+            document.getElementById("giving-popup").style.display = "none";
+            document.cookie =
+                "giving_popup_closed=1; expires=" +
+                date.setDate(date.getDate() + 1);
+        }
+    });
+}
+</script>
+<style>
+    #giving-popup {
+        width: 100vw;
+        height: 100vh;
+        border: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+</style>
