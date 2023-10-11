@@ -12,7 +12,7 @@ import Layout from "../layouts/Layout.astro";
                     <span id="minutes">00M</span>
                     <span id="seconds">00S</span>
                 </div>
-                <p>Columbia Giving Day is Wednesday, October 25</p>
+                <p>Columbia Giving Day is Wednesday, <span>October 25</span></p>
             </div>
             <div class="cta-container">
                 <a
@@ -62,6 +62,10 @@ import Layout from "../layouts/Layout.astro";
         border: 2px solid #007d8e;
         padding: 5px 7px;
         font-weight: bold;
+    }
+
+    .banner-content p span {
+        display: inline-block;
     }
 
     .cta-container {

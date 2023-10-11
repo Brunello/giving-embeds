@@ -44,9 +44,15 @@ window.addEventListener("scroll", function () {
     body:has(#giving-banner) #header {
         top: 51px;
     }
+    body:has(#giving-banner) main {
+        padding-top: 51px;
+    }
     @media screen and (max-width: 1005px) {
         #giving-banner {
             height: 142px;
+        }
+        body:has(#giving-banner) main {
+            padding-top: 142px;
         }
         body:has(#giving-banner) #header {
             top: 142px;
@@ -55,6 +61,9 @@ window.addEventListener("scroll", function () {
     @media screen and (max-width: 420px) {
         #giving-banner {
             height: 160px;
+        }
+        body:has(#giving-banner) main {
+            padding-top: 160px;
         }
         body:has(#giving-banner) #header {
             top: 160px;
