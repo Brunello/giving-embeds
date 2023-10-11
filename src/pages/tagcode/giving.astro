@@ -10,7 +10,11 @@ if (!document.cookie.includes("giving_banner_closed=1")) {
     window.addEventListener("message", function (event) {
         if (event.data === "banner closed") {
             var date = new Date();
-            document.getElementById("giving-banner").style.display = "none";
+            document
+                .getElementById("giving-banner")
+                .parentNode.removeChild(
+                    document.getElementById("giving-banner")
+                );
             document.cookie =
                 "giving_banner_closed=1; expires=" +
                 date.setDate(date.getDate() + 1);

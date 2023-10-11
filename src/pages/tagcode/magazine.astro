@@ -1,18 +1,3 @@
----
-import Layout from "../../layouts/Layout.astro";
----
-
-<Layout title="Giving to Columbia Banner">
-    <main>
-        <div
-            class="dummy content"
-            style="width: 95vw; height: 95vw; display: flex; align-items: center; justify-content: center; background-color: yellow; border-radius: 5%; margin: 0 auto;"
-        >
-            Lorem Ipsum
-        </div>
-    </main>
-</Layout>
-
 <script type="text/javascript">
 if (!document.cookie.includes("giving_banner_closed=1")) {
     var iframe = document.createElement("iframe");
@@ -24,7 +9,11 @@ if (!document.cookie.includes("giving_banner_closed=1")) {
     window.addEventListener("message", function (event) {
         if (event.data === "banner closed") {
             var date = new Date();
-            document.getElementById("giving-banner").style.display = "none";
+            document
+                .getElementById("giving-banner")
+                .parentNode.removeChild(
+                    document.getElementById("giving-banner")
+                );
             document.cookie =
                 "giving_banner_closed=1; expires=" +
                 date.setDate(date.getDate() + 1);

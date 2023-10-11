@@ -2,15 +2,21 @@
 if (!document.cookie.includes("giving_banner_closed=1")) {
     var iframe = document.createElement("iframe");
     var body = document.querySelector("body");
-    iframe.src = "https://giving-embeds.vercel.app/testbanner";
+    iframe.src = "https://giving-embeds.vercel.app/alumnibanner";
     iframe.setAttribute("id", "giving-banner");
     document.body.insertBefore(iframe, body.firstChild);
 
     window.addEventListener("message", function (event) {
         if (event.data === "banner closed") {
             var date = new Date();
-            document.getElementById("giving-banner").style.display = "none";
-            // document.cookie = "giving_banner_closed=1; expires=" + date.setDate(date.getDate() + 1);
+            document
+                .getElementById("giving-banner")
+                .parentNode.removeChild(
+                    document.getElementById("giving-banner")
+                );
+            document.cookie =
+                "giving_banner_closed=1; expires=" +
+                date.setDate(date.getDate() + 1);
         }
         console.log(event.data);
     });
@@ -25,14 +31,20 @@ if (!document.cookie.includes("giving_banner_closed=1")) {
     body:not(.back-to-top-shown) .header-wrapper {
         top: 51px !important;
     }
-    @media screen and (max-width: 1005px) {
+    @media screen and (max-width: 990px) {
         #giving-banner {
             height: 142px;
         }
+        body:not(.back-to-top-shown) .header-wrapper {
+            top: 142px !important;
+        }
     }
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 405px) {
         #giving-banner {
             height: 160px;
+        }
+        body:not(.back-to-top-shown) .header-wrapper {
+            top: 160px !important;
         }
     }
 </style>
