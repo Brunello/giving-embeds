@@ -118,46 +118,46 @@ import Layout from "../layouts/Layout.astro";
 </style>
 
 <script>
-    // const close = document.getElementById("close") as HTMLElement;
-    // let date: Date = new Date();
+    const close = document.getElementById("close") as HTMLElement;
+    let date: Date = new Date();
 
-    // close.addEventListener("click", () => {
-    //     window.parent.postMessage("banner closed", "*");
-    // });
+    close.addEventListener("click", () => {
+        window.parent.postMessage("banner closed", "*");
+    });
 
-    // var end: Date = new Date("10/01/2024 00:00 AM");
+    var end: Date = new Date("10/02/2024 00:00 AM");
 
-    // var _second = 1000;
-    // var _minute = _second * 60;
-    // var _hour = _minute * 60;
-    // var _day = _hour * 24;
-    // var timer: number;
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer: number;
 
-    // function showRemaining() {
-    //     var now: Date = new Date();
-    //     var distance: number = end - now;
-    //     if (distance < 0) {
-    //         clearInterval(timer);
-    //         return;
-    //     }
-    //     var days = Math.floor(distance / _day);
-    //     var hours = Math.floor((distance % _day) / _hour);
-    //     var minutes = Math.floor((distance % _hour) / _minute);
-    //     var seconds = Math.floor((distance % _minute) / _second);
+    function showRemaining() {
+        var now: Date = new Date();
+        var distance: number = end - now;
+        if (distance < 0) {
+            clearInterval(timer);
+            return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
 
-    //     const daysElement = document.getElementById("days") as HTMLElement;
-    //     const hoursElement = document.getElementById("hours") as HTMLElement;
-    //     const minutesElement = document.getElementById(
-    //         "minutes"
-    //     ) as HTMLElement;
-    //     const secondsElement = document.getElementById(
-    //         "seconds"
-    //     ) as HTMLElement;
+        const daysElement = document.getElementById("days") as HTMLElement;
+        const hoursElement = document.getElementById("hours") as HTMLElement;
+        const minutesElement = document.getElementById(
+            "minutes"
+        ) as HTMLElement;
+        const secondsElement = document.getElementById(
+            "seconds"
+        ) as HTMLElement;
 
-    //     daysElement.innerHTML = days + "D";
-    //     hoursElement.innerHTML = hours + "H";
-    //     minutesElement.innerHTML = minutes + "M";
-    //     secondsElement.innerHTML = seconds + "S";
-    // }
-    // timer = setInterval(showRemaining, 1000);
+        daysElement.innerHTML = days + "D";
+        hoursElement.innerHTML = hours + "H";
+        minutesElement.innerHTML = minutes + "M";
+        secondsElement.innerHTML = seconds + "S";
+    }
+    timer = setInterval(showRemaining, 1000);
 </script>
