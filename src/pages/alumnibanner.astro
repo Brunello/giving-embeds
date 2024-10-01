@@ -7,7 +7,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="banner-container">
             <div class="banner-content">
                 <div class="countdown">
-                    <span id="days">00D</span>
+                    <!-- <span id="days">00D</span> -->
                     <span id="hours">00H</span>
                     <span id="minutes">00M</span>
                     <span id="seconds">00S</span>
@@ -140,12 +140,12 @@ import Layout from "../layouts/Layout.astro";
             clearInterval(timer);
             return;
         }
-        var days = Math.floor(distance / _day);
+        // var days = Math.floor(distance / _day);
         var hours = Math.floor((distance % _day) / _hour);
         var minutes = Math.floor((distance % _hour) / _minute);
         var seconds = Math.floor((distance % _minute) / _second);
 
-        const daysElement = document.getElementById("days") as HTMLElement;
+        // const daysElement = document.getElementById("days") as HTMLElement;
         const hoursElement = document.getElementById("hours") as HTMLElement;
         const minutesElement = document.getElementById(
             "minutes"
@@ -154,7 +154,7 @@ import Layout from "../layouts/Layout.astro";
             "seconds"
         ) as HTMLElement;
 
-        daysElement.innerHTML = days + "D";
+        // daysElement.innerHTML = days + "D";
         hoursElement.innerHTML = hours + "H";
         minutesElement.innerHTML = minutes + "M";
         secondsElement.innerHTML = seconds + "S";
