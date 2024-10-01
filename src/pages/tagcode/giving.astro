@@ -1,42 +1,42 @@
 <!-- Giving Site -->
 <script type="text/javascript">
-if (!document.cookie.includes("giving_banner_closed=1")) {
-    var iframe = document.createElement("iframe");
-    var body = document.querySelector("body");
-    iframe.src = "https://giving-embeds.vercel.app/banner";
-    iframe.setAttribute("id", "giving-banner");
-    document.body.insertBefore(iframe, body.firstChild);
+    if (!document.cookie.includes("giving_banner_closed=1")) {
+        var iframe = document.createElement("iframe");
+        var body = document.querySelector("body");
+        iframe.src = "https://giving-embeds.vercel.app/banner";
+        iframe.setAttribute("id", "giving-banner");
+        document.body.insertBefore(iframe, body.firstChild);
 
-    window.addEventListener("message", function (event) {
-        if (event.data === "banner closed") {
-            var date = new Date(Date.now() + 86400 * 1000).toUTCString();
-            document
-                .getElementById("giving-banner")
-                .parentNode.removeChild(
-                    document.getElementById("giving-banner")
-                );
-            document.cookie =
-                "giving_banner_closed=1; expires=" +
-                date +
-                "max-age=86400;";
-        }
-        console.log(event.data);
-    });
+        window.addEventListener("message", function (event) {
+            if (event.data === "banner closed") {
+                var date = new Date(Date.now() + 86400 * 1000).toUTCString();
+                document
+                    .getElementById("giving-banner")
+                    .parentNode.removeChild(
+                        document.getElementById("giving-banner")
+                    );
+                document.cookie =
+                    "giving_banner_closed=1; expires=" +
+                    date +
+                    "max-age=86400;";
+            }
+            console.log(event.data);
+        });
 
-    window.addEventListener("scroll", function () {
-        var scrollTop = window.scrollY;
-        if (scrollTop > 160) {
-            document.querySelector(".site-header").style.top = "0px";
-            document.getElementById("giving-banner").style.display = "none";
-        } else {
-            document
-                .querySelector(".site-header")
-                .style.removeProperty("top");
-            document.getElementById("giving-banner").style.display =
-                "block";
-        }
-    });
-}
+        window.addEventListener("scroll", function () {
+            var scrollTop = window.scrollY;
+            if (scrollTop > 160) {
+                document.querySelector(".site-header").style.top = "0px";
+                document.getElementById("giving-banner").style.display = "none";
+            } else {
+                document
+                    .querySelector(".site-header")
+                    .style.removeProperty("top");
+                document.getElementById("giving-banner").style.display =
+                    "block";
+            }
+        });
+    }
 </script>
 <style>
     #giving-banner {
@@ -50,20 +50,30 @@ if (!document.cookie.includes("giving_banner_closed=1")) {
     body:has(#giving-banner) .site-header {
         top: 51px;
     }
-    @media screen and (max-width: 1005px) {
+    body:has(#giving-banner) #main-wrapper {
+        margin-top: 132px;
+    }
+
+    @media screen and (max-width: 991px) {
         #giving-banner {
             height: 142px;
         }
         body:has(#giving-banner) .site-header {
             top: 142px;
         }
+        body:has(#giving-banner) #main-wrapper {
+            margin-top: 223px;
+        }
     }
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 378px) {
         #giving-banner {
             height: 160px;
         }
         body:has(#giving-banner) .site-header {
             top: 160px;
+        }
+        body:has(#giving-banner) #main-wrapper {
+            margin-top: 241px;
         }
     }
 </style>
