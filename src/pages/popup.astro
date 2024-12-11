@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import GivingDayLogo from "../assets/CGD-2024-Vector-File-Logo-Full-Color-Primary.png";
+import ColumbiaCrown from "../assets/columbia-crown.svg";
 ---
 
 <Layout title="Giving to Columbia Popup">
@@ -8,20 +8,25 @@ import GivingDayLogo from "../assets/CGD-2024-Vector-File-Logo-Full-Color-Primar
         <div class="popup-container">
             <div class="popup">
                 <div class="popup-image">
-                    <img src={GivingDayLogo.src} />
+                    <img src={ColumbiaCrown.src} />
                 </div>
                 <div class="popup-content">
                     <!-- <span>Tuesday, October 1, 2024</span> -->
-                    <h2>Thank you for your generosity.</h2>
+                    <h2>
+                        Make an impact and meet the calendar year-end giving
+                        deadline
+                    </h2>
                     <p>
-                        On Columbia Giving Day on Tuesday, October 1, the
-                        University-wide community came together to support
-                        students, faculty, and researchers.
+                        Before the calendar year comes to a close on Tuesday,
+                        December 31, 2024, at 11:59 p.m. EST, <strong
+                            >take action today and support an area of Columbia
+                            that is meaningful to you.</strong
+                        > You'll meet this critical deadline and provide immediate-use
+                        resources for students, faculty, and researchers for the
+                        upcoming semester.
                     </p>
-                    <a
-                        href="https://givingday.columbia.edu/pages/columbia-giving-day-home?utm_source=GivingSite&utm_medium=website&utm_campaign=CGD2024popup"
-                        class="btn btn-primary"
-                        target="_blank">See Your Impact</a
+                    <a href="#" class="btn btn-primary" target="_blank"
+                        >Give Now</a
                     >
                 </div>
                 <div id="close" class="close">x</div>
@@ -68,6 +73,7 @@ import GivingDayLogo from "../assets/CGD-2024-Vector-File-Logo-Full-Color-Primar
         transform: translateY(-50%);
         background: white;
         border-radius: 50%;
+        padding: 25px;
     }
     .popup-image img {
         width: 100%;
