@@ -13,13 +13,17 @@ import Layout from "../layouts/Layout.astro";
                     <span id="seconds">00S</span>
                 </div>
                 <p>
-                    Make an impact for students, faculty, and researchers ahead
-                    of the calendar year-end giving deadline on Tuesday,
-                    December 31, at 11:59 p.m. EST.
+                    You can still make a gift in 2024! Support students,
+                    faculty, and researchers by the year-end giving deadline on
+                    Tuesday, December 31 at 11:59 p.m. EST.
                 </p>
             </div>
             <div class="cta-container">
-                <a class="cta" href="#" target="_blank">
+                <a
+                    class="cta"
+                    href="https://www.givenow.columbia.edu/?ac=UNZE&utm_source=CAA&utm_medium=website&utm_campaign=CYE2024banner"
+                    target="_blank"
+                >
                     <span class="cta-text">Give Now</span>
                 </a>
                 <button id="close">X</button>
@@ -41,6 +45,7 @@ import Layout from "../layouts/Layout.astro";
         justify-content: space-between;
         padding: 0 10%;
         width: calc(100% - 20%);
+        gap: 14px;
     }
 
     .banner-container.closed {
@@ -68,6 +73,7 @@ import Layout from "../layouts/Layout.astro";
         display: flex;
         align-items: center;
         gap: 35px;
+        min-width: 172px;
     }
 
     .cta-container .cta {
