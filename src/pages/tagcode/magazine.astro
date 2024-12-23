@@ -1,37 +1,37 @@
 <script type="text/javascript">
-if (!document.cookie.includes("giving_banner_closed=1")) {
-    var iframe = document.createElement("iframe");
-    var body = document.querySelector("body");
-    iframe.src = "https://giving-embeds.vercel.app/magbanner";
-    iframe.setAttribute("id", "giving-banner");
-    document.body.insertBefore(iframe, body.firstChild);
+    if (!document.cookie.includes("giving_banner_closed=1")) {
+        var iframe = document.createElement("iframe");
+        var body = document.querySelector("body");
+        iframe.src = "https://giving-embeds.vercel.app/magbanner";
+        iframe.setAttribute("id", "giving-banner");
+        document.body.insertBefore(iframe, body.firstChild);
 
-    window.addEventListener("message", function (event) {
-        if (event.data === "banner closed") {
-            var date = new Date(Date.now() + 86400 * 1000).toUTCString();
-            document
-                .getElementById("giving-banner")
-                .parentNode.removeChild(
-                    document.getElementById("giving-banner")
-                );
-            document.cookie =
-                "giving_banner_closed=1; expires=" +
-                date +
-                "max-age=86400;";
-        }
-        console.log(event.data);
-    });
-}
-window.addEventListener("scroll", function () {
-    var scrollTop = window.scrollY;
-    if (scrollTop > 160) {
-        document.querySelector("#header").style.top = "0px";
-        document.getElementById("giving-banner").style.display = "none";
-    } else {
-        document.querySelector("#header").style.removeProperty("top");
-        document.getElementById("giving-banner").style.display = "block";
+        window.addEventListener("message", function (event) {
+            if (event.data === "banner closed") {
+                var date = new Date(Date.now() + 86400 * 1000).toUTCString();
+                document
+                    .getElementById("giving-banner")
+                    .parentNode.removeChild(
+                        document.getElementById("giving-banner")
+                    );
+                document.cookie =
+                    "giving_banner_closed=1; expires=" +
+                    date +
+                    "max-age=86400;";
+            }
+            console.log(event.data);
+        });
     }
-});
+    window.addEventListener("scroll", function () {
+        var scrollTop = window.scrollY;
+        if (scrollTop > 160) {
+            document.querySelector("#header").style.top = "0px";
+            document.getElementById("giving-banner").style.display = "none";
+        } else {
+            document.querySelector("#header").style.removeProperty("top");
+            document.getElementById("giving-banner").style.display = "block";
+        }
+    });
 </script>
 <style>
     #giving-banner {
@@ -48,26 +48,60 @@ window.addEventListener("scroll", function () {
     body:has(#giving-banner) main {
         padding-top: 51px;
     }
-    @media screen and (max-width: 1005px) {
+    @media screen and (max-width: 1799px) {
         #giving-banner {
-            height: 142px;
-        }
-        body:has(#giving-banner) main {
-            padding-top: 142px;
+            height: 69px;
         }
         body:has(#giving-banner) #header {
-            top: 142px;
+            top: 69px;
+        }
+        body:has(#giving-banner) main {
+            padding-top: 69px;
         }
     }
-    @media screen and (max-width: 405px) {
+    @media screen and (max-width: 1032px) {
+        #giving-banner {
+            height: 87.5px;
+        }
+        body:has(#giving-banner) #header {
+            top: 87.5px;
+        }
+        body:has(#giving-banner) main {
+            padding-top: 87.5px;
+        }
+    }
+    @media screen and (max-width: 989px) {
         #giving-banner {
             height: 160px;
+        }
+        body:has(#giving-banner) #header {
+            top: 160px;
         }
         body:has(#giving-banner) main {
             padding-top: 160px;
         }
+    }
+    @media screen and (max-width: 612px) {
+        #giving-banner {
+            height: 178.5px;
+        }
         body:has(#giving-banner) #header {
-            top: 160px;
+            top: 178.5px;
+        }
+        body:has(#giving-banner) main {
+            padding-top: 178.5px;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        #giving-banner {
+            height: 197px;
+        }
+        body:has(#giving-banner) #header {
+            top: 197px;
+        }
+        body:has(#giving-banner) main {
+            padding-top: 197px;
         }
     }
 </style>
