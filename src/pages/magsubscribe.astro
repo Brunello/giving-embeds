@@ -162,7 +162,7 @@ import Covers from "../assets/columbia-book-image.png";
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            gap: 1em;
+            gap: 8px;
             flex-wrap: wrap;
         }
         .banner-content p {
@@ -188,6 +188,20 @@ import Covers from "../assets/columbia-book-image.png";
 
         .cta {
             order: 2;
+        }
+    }
+
+    @media screen and (max-width: 420px) {
+        .cta {
+            padding: 5px 16px;
+        }
+
+        .graph {
+            max-width: 150px;
+        }
+
+        .graph img {
+            width: 100%;
         }
     }
 </style>
