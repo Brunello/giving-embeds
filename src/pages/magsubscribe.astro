@@ -1,0 +1,264 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Covers from "../assets/columbia-book-image.png";
+---
+
+<Layout title="Giving to Columbia Banner">
+    <main>
+        <div class="banner-container">
+            <div class="banner-content">
+                <div class="graph">
+                    <img src={Covers.src} alt="Columbia Magazine Covers" />
+                </div>
+                <p>Sign up for a digital or print subscription!</p>
+                <a
+                    class="cta"
+                    href="https://magazine.columbia.edu/subscribe?utm_source=CUmagazine&utm_medium=website&utm_campaign=banner"
+                    target="_blank"
+                >
+                    <span class="cta-text">Subscribe</span>
+                </a>
+                <button id="close">X</button>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    /*
+ * The Typekit service used to deliver this font or fonts for use on websites
+ * is provided by Adobe and is subject to these Terms of Use
+ * http://www.adobe.com/products/eulas/tou_typekit. For font license
+ * information, see the list below.
+ *
+ * franklin-gothic-urw:
+ *   - http://typekit.com/eulas/0000000000000000000118ad
+ *   - http://typekit.com/eulas/000000000000000000011ce6
+ *   - http://typekit.com/eulas/0000000000000000000118b1
+ *   - http://typekit.com/eulas/0000000000000000000118ae
+ *   - http://typekit.com/eulas/0000000000000000000118b0
+ *   - http://typekit.com/eulas/0000000000000000000118b2
+ * freight-display-pro:
+ *   - http://typekit.com/eulas/0000000000000000000132cb
+ *   - http://typekit.com/eulas/0000000000000000000132cc
+ *   - http://typekit.com/eulas/0000000000000000000132cd
+ *   - http://typekit.com/eulas/0000000000000000000132ce
+ *   - http://typekit.com/eulas/0000000000000000000132cf
+ *   - http://typekit.com/eulas/0000000000000000000132d0
+ * freight-text-pro:
+ *   - http://typekit.com/eulas/000000000000000000012059
+ *   - http://typekit.com/eulas/00000000000000000001205a
+ *   - http://typekit.com/eulas/00000000000000000001205b
+ *   - http://typekit.com/eulas/00000000000000000001205c
+ *   - http://typekit.com/eulas/000000000000000000012108
+ *   - http://typekit.com/eulas/00000000000000000001210c
+ *   - http://typekit.com/eulas/00000000000000000001210d
+ *
+ * © 2009-2020 Adobe Systems Incorporated. All Rights Reserved.
+ */
+    /*{"last_published":"2020-12-15 16:01:36 UTC"}*/
+
+    @import url("https://p.typekit.net/p.css?s=1&k=uec1iwp&ht=tk&f=12784.12785.12786.12788.12789.12790.13464.13465.13466.13467.13470.13474.13475.18490.18491.18492.18493.18494.18495&a=13365780&app=typekit&e=css");
+
+    @font-face {
+        font-family: "franklin-gothic-urw";
+        src:
+            url("https://use.typekit.net/af/9cb78a/0000000000000000000118ad/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+                format("woff2"),
+            url("https://use.typekit.net/af/9cb78a/0000000000000000000118ad/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+                format("woff"),
+            url("https://use.typekit.net/af/9cb78a/0000000000000000000118ad/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+                format("opentype");
+        font-display: auto;
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    @font-face {
+        font-family: "franklin-gothic-urw";
+        src:
+            url("https://use.typekit.net/af/2e6f07/000000000000000000011ce6/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3")
+                format("woff2"),
+            url("https://use.typekit.net/af/2e6f07/000000000000000000011ce6/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3")
+                format("woff"),
+            url("https://use.typekit.net/af/2e6f07/000000000000000000011ce6/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3")
+                format("opentype");
+        font-display: auto;
+        font-style: normal;
+        font-weight: 500;
+    }
+
+    @font-face {
+        font-family: "franklin-gothic-urw";
+        src:
+            url("https://use.typekit.net/af/b825af/0000000000000000000118b1/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
+                format("woff2"),
+            url("https://use.typekit.net/af/b825af/0000000000000000000118b1/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
+                format("woff"),
+            url("https://use.typekit.net/af/b825af/0000000000000000000118b1/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
+                format("opentype");
+        font-display: auto;
+        font-style: normal;
+        font-weight: 700;
+    }
+
+    @font-face {
+        font-family: "franklin-gothic-urw";
+        src:
+            url("https://use.typekit.net/af/07d425/0000000000000000000118ae/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+                format("woff2"),
+            url("https://use.typekit.net/af/07d425/0000000000000000000118ae/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+                format("woff"),
+            url("https://use.typekit.net/af/07d425/0000000000000000000118ae/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+                format("opentype");
+        font-display: auto;
+        font-style: italic;
+        font-weight: 400;
+    }
+
+    @font-face {
+        font-family: "franklin-gothic-urw";
+        src:
+            url("https://use.typekit.net/af/a5188d/0000000000000000000118b0/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i5&v=3")
+                format("woff2"),
+            url("https://use.typekit.net/af/a5188d/0000000000000000000118b0/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i5&v=3")
+                format("woff"),
+            url("https://use.typekit.net/af/a5188d/0000000000000000000118b0/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i5&v=3")
+                format("opentype");
+        font-display: auto;
+        font-style: italic;
+        font-weight: 500;
+    }
+
+    @font-face {
+        font-family: "franklin-gothic-urw";
+        src:
+            url("https://use.typekit.net/af/9a7284/0000000000000000000118b2/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3")
+                format("woff2"),
+            url("https://use.typekit.net/af/9a7284/0000000000000000000118b2/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3")
+                format("woff"),
+            url("https://use.typekit.net/af/9a7284/0000000000000000000118b2/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3")
+                format("opentype");
+        font-display: auto;
+        font-style: italic;
+        font-weight: 700;
+    }
+
+    @font-face {
+        font-family: "freight-display-pro";
+        src:
+            url("https://use.typekit.net/af/6f4412/0000000000000000000132cd/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
+                format("woff2"),
+            url("https://use.typekit.net/af/6f4412/0000000000000000000132cd/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
+                format("woff"),
+            url("https://use.typekit.net/af/6f4412/0000000000000000000132cd/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
+                format("opentype");
+        font-display: auto;
+        font-style: normal;
+        font-weight: 700;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .banner-container {
+        background-color: #61cee4;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        padding: 0 9%;
+        width: calc(100% - 18%);
+    }
+
+    .banner-container.closed {
+        display: none;
+    }
+
+    .banner-content {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .graph img {
+        margin-top: 3px;
+        margin-bottom: -3px;
+    }
+
+    .cta {
+        color: #000;
+        background-color: #b2dfed;
+        border: 1px solid #000;
+        padding: 5px 24px;
+        font-size: 24px;
+        text-decoration: none;
+        font-family: "freight-display-pro";
+        font-weight: 700;
+    }
+
+    p {
+        font-family: "franklin-gothic-urw";
+        color: #000;
+        font-size: 18px;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    #close {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #444648;
+        border: 1px solid #fff;
+        color: #fff;
+        font-size: 8px;
+        padding-inline: 0;
+        padding-top: 2px;
+        cursor: pointer;
+        position: absolute;
+        top: 1.5em;
+        right: 1.5em;
+    }
+
+    @media screen and (max-width: 990px) {
+        .banner-container {
+            padding: 1em 2em;
+            width: calc(100% - 4em);
+            flex-direction: column;
+            justify-content: unset;
+            align-items: center;
+            gap: 1em;
+        }
+        .banner-content {
+            flex-direction: column;
+        }
+        .banner-content p {
+            margin: 0;
+            text-align: center;
+        }
+        #close {
+            position: absolute;
+            top: 1.5em;
+            right: 1.5em;
+        }
+
+        .cta-container {
+            min-width: unset;
+        }
+
+        .graph {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+    const close = document.getElementById("close") as HTMLElement;
+    let date: Date = new Date();
+
+    close.addEventListener("click", () => {
+        window.parent.postMessage("banner closed", "*");
+    });
+</script>
