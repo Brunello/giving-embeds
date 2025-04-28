@@ -1,0 +1,97 @@
+<script type="text/javascript">
+    if (!document.cookie.includes("subscribe_banner_closed=1")) {
+        var iframe = document.createElement("iframe");
+        var body = document.querySelector("body");
+        iframe.src = "https://giving-embeds.vercel.app/magsubscribe";
+        iframe.setAttribute("id", "subscribe-banner");
+        document.body.insertBefore(iframe, body.firstChild);
+
+        window.addEventListener("message", function (event) {
+            if (event.data === "banner closed") {
+                var date = new Date(Date.now() + 86400 * 1000).toUTCString();
+                document
+                    .getElementById("subscribe-banner")
+                    .parentNode.removeChild(
+                        document.getElementById("subscribe-banner")
+                    );
+                document.cookie =
+                    "subscribe_banner_closed=1; expires=" +
+                    date +
+                    "max-age=86400;";
+            }
+            console.log(event.data);
+        });
+    }
+    window.addEventListener("scroll", function () {
+        var scrollTop = window.scrollY;
+        if (scrollTop > 160) {
+            document.querySelector("#header").style.top = "0px";
+            document.getElementById("subscribe-banner").style.display = "none";
+        } else {
+            document.querySelector("#header").style.removeProperty("top");
+            document.getElementById("subscribe-banner").style.display = "block";
+        }
+    });
+</script>
+<style>
+    #subscribe-banner {
+        width: 100vw;
+        height: 68.05px;
+        border: 0;
+        position: fixed;
+        top: 0;
+        z-index: 101;
+    }
+    body:has(#subscribe-banner) #header {
+        top: 68.05px;
+    }
+    body:has(#subscribe-banner) main {
+        padding-top: 68.05px;
+    }
+    @media screen and (max-width: 990px) {
+        #subscribe-banner {
+            height: 113.55px;
+        }
+        body:has(#subscribe-banner) #header {
+            top: 113.55px;
+        }
+        body:has(#subscribe-banner) main {
+            padding-top: 113.55px;
+        }
+    }
+    @media screen and (max-width: 452px) {
+        #subscribe-banner {
+            height: 135.05px;
+        }
+        body:has(#subscribe-banner) #header {
+            top: 135.05px;
+        }
+        body:has(#subscribe-banner) main {
+            padding-top: 135.05px;
+        }
+    }
+
+    @media screen and (max-width: 420px) {
+        #subscribe-banner {
+            height: 128.3px;
+        }
+        body:has(#subscribe-banner) #header {
+            top: 128.3px;
+        }
+        body:has(#subscribe-banner) main {
+            padding-top: 128.3px;
+        }
+    }
+
+    @media screen and (max-width: 353px) {
+        #subscribe-banner {
+            height: 195.3px;
+        }
+        body:has(#subscribe-banner) #header {
+            top: 195.3px;
+        }
+        body:has(#subscribe-banner) main {
+            padding-top: 195.3px;
+        }
+    }
+</style>
