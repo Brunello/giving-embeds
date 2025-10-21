@@ -12,7 +12,7 @@ import Layout from "../layouts/Layout.astro";
                     <span id="minutes">00M</span>
                     <span id="seconds">00S</span>
                 </div>
-                <p>Columbia Giving Day is Tuesday, October 21.</p>
+                <p>Today is Columbia Giving Day!</p>
             </div>
             <div class="cta-container">
                 <a
@@ -20,7 +20,7 @@ import Layout from "../layouts/Layout.astro";
                     href="https://givingday.columbia.edu/pages/columbia-giving-day-home?utm_source=CUMagazine&utm_medium=web&utm_campaign=CGD2025banner"
                     target="_blank"
                 >
-                    <span class="cta-text">Learn More</span>
+                    <span class="cta-text">Give Now</span>
                 </a>
                 <button id="close">X</button>
             </div>
@@ -136,7 +136,7 @@ import Layout from "../layouts/Layout.astro";
         window.parent.postMessage("banner closed", "*");
     });
 
-    var end: Date = new Date("10/20/2025 11:59 PM");
+    var end: Date = new Date("10/21/2025 11:59 PM");
 
     var _second = 1000;
     var _minute = _second * 60;
