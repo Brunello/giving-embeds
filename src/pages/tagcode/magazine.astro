@@ -36,49 +36,82 @@
 <style>
     #giving-banner {
         width: 100vw;
-        height: 49px;
+        height: 48px;
         border: 0;
         position: fixed;
         top: 0;
         z-index: 101;
     }
     body:has(#giving-banner) #header {
-        top: 49px;
+        top: 48px;
     }
     body:has(#giving-banner) main {
-        padding-top: 49px;
+        padding-top: 48px;
+    }
+    @media screen and (max-width: 1845px) {
+        #giving-banner {
+            height: 65px;
+        }
+        body:has(#giving-banner) #header {
+            top: 65px;
+        }
+        body:has(#giving-banner) main {
+            padding-top: 65px;
+        }
+    }
+    @media screen and (max-width: 1153px) {
+        #giving-banner {
+            height: 81px;
+        }
+        body:has(#giving-banner) #header {
+            top: 81px;
+        }
+        body:has(#giving-banner) main {
+            padding-top: 81px;
+        }
     }
     @media screen and (max-width: 990px) {
         #giving-banner {
-            height: 91px;
+            height: 152px;
         }
         body:has(#giving-banner) #header {
-            top: 91px;
+            top: 152px;
         }
         body:has(#giving-banner) main {
-            padding-top: 91px;
+            padding-top: 152px;
         }
     }
-    @media screen and (max-width: 455px) {
+    @media screen and (max-width: 619px) {
         #giving-banner {
-            height: 107px;
+            height: 168px;
         }
         body:has(#giving-banner) #header {
-            top: 107px;
+            top: 168px;
         }
         body:has(#giving-banner) main {
-            padding-top: 107px;
+            padding-top: 168px;
         }
     }
-    @media screen and (max-width: 275px) {
+    @media screen and (max-width: 460px) {
         #giving-banner {
-            height: 124px;
+            height: 185px;
         }
         body:has(#giving-banner) #header {
-            top: 124px;
+            top: 185px;
         }
         body:has(#giving-banner) main {
-            padding-top: 124px;
+            padding-top: 185px;
+        }
+    }
+    @media screen and (max-width: 353px) {
+        #giving-banner {
+            height: 201px;
+        }
+        body:has(#giving-banner) #header {
+            top: 201px;
+        }
+        body:has(#giving-banner) main {
+            padding-top: 201px;
         }
     }
 </style>
