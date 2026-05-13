@@ -49,11 +49,15 @@ import Layout from "../layouts/Layout.astro";
         align-items: center;
         gap: 14px;
     }
+    .banner-content {
+        flex-shrink: 1;
+        min-width: 0;
+    }
     .cta-container {
         display: flex;
         align-items: center;
         gap: 35px;
-        min-width: 200px;
+        flex-shrink: 0;
     }
     .cta-container .cta {
         background-color: var(--btn-bg);
@@ -63,6 +67,7 @@ import Layout from "../layouts/Layout.astro";
         text-decoration: none;
         font-weight: bold;
         font-family: proxima-nova, sans-serif;
+        white-space: nowrap;
     }
     #close {
         width: 16px;
