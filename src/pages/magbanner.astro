@@ -21,7 +21,7 @@ import Layout from "../layouts/Layout.astro";
             <div class="cta-container">
                 <a
                     class="cta"
-                    href="https://www.givenow.columbia.edu/?ac=ZITS&utm_source=CUmagazine&utmmedium=website&utm_campaign=CYE2025banner"
+                    href="https://www.givenow.columbia.edu/?ac=ZITS&utm_source=CUmagazine&utm_medium=website&utm_campaign=CYE2025banner"
                     target="_blank"
                 >
                     <span class="cta-text">Give Now</span>
@@ -134,7 +134,6 @@ import Layout from "../layouts/Layout.astro";
 
 <script>
     const close = document.getElementById("close") as HTMLElement;
-    let date: Date = new Date();
 
     close.addEventListener("click", () => {
         window.parent.postMessage("banner closed", "*");

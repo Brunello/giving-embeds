@@ -1,0 +1,152 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Alumni Survey Banner">
+    <main>
+        <div class="banner-container">
+            <div class="banner-content">
+                <p>
+                    The Columbia all-alumni survey is live! Take 10 minutes to
+                    help shape the future of your alumni experience. 50
+                    participants will receive a Columbia sweatshirt.
+                </p>
+            </div>
+            <div class="cta-container">
+                <a id="cta" class="cta" href="#" target="_blank">
+                    <span class="cta-text">Share Your Thoughts</span>
+                </a>
+                <button id="close">X</button>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    :root {
+        --bg: #1d4f91;
+        --btn-bg: #bad9eb;
+        --btn-color: #1d4f91;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .banner-container {
+        background-color: var(--bg);
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 9%;
+        width: calc(100% - 18%);
+        gap: 14px;
+    }
+    .banner-container.closed {
+        display: none;
+    }
+    .banner-content {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+    .cta-container {
+        display: flex;
+        align-items: center;
+        gap: 35px;
+        min-width: 200px;
+    }
+    .cta-container .cta {
+        background-color: var(--btn-bg);
+        color: var(--btn-color);
+        padding: 10px 24px;
+        font-size: 16px;
+        text-decoration: none;
+        font-weight: bold;
+        font-family: proxima-nova, sans-serif;
+    }
+    #close {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 1px solid #fff;
+        color: #fff;
+        font-size: 8px;
+        padding-inline: 0;
+        padding-top: 2px;
+        cursor: pointer;
+    }
+    @media screen and (max-width: 990px) {
+        .banner-container {
+            padding: 1em 2em;
+            width: calc(100% - 4em);
+            flex-direction: column;
+            justify-content: unset;
+            align-items: center;
+            gap: 1em;
+        }
+        .banner-content {
+            flex-direction: column;
+        }
+        .banner-content p {
+            margin: 0;
+            text-align: center;
+        }
+        #close {
+            position: absolute;
+            top: 1.5em;
+            right: 1.5em;
+        }
+        .cta-container {
+            min-width: unset;
+        }
+    }
+</style>
+
+<script>
+    const configs: Record<string, { url: string; bg: string; btnBg: string; btnColor: string }> = {
+        giving: {
+            url: "https://survey.alchemer.com/s3/8757280/Columbia-2026-AAS?userid=giving",
+            bg: "#1d4f91",
+            btnBg: "#bad9eb",
+            btnColor: "#1d4f91",
+        },
+        alumni: {
+            url: "https://survey.alchemer.com/s3/8757280/Columbia-2026-AAS?userid=caawebsite",
+            bg: "#1d4f91",
+            btnBg: "#bad9eb",
+            btnColor: "#1d4f91",
+        },
+        magazine: {
+            url: "https://survey.alchemer.com/s3/8757280/Columbia-2026-AAS?userid=cumagazine",
+            bg: "#395ea1",
+            btnBg: "#fed302",
+            btnColor: "#003373",
+        },
+    };
+
+    const site = new URLSearchParams(window.location.search).get("site") ?? "giving";
+    const config = configs[site] ?? configs.giving;
+
+    const root = document.documentElement;
+    root.style.setProperty("--bg", config.bg);
+    root.style.setProperty("--btn-bg", config.btnBg);
+    root.style.setProperty("--btn-color", config.btnColor);
+
+    (document.getElementById("cta") as HTMLAnchorElement).href = config.url;
+
+    const close = document.getElementById("close") as HTMLElement;
+    close.addEventListener("click", () => {
+        window.parent.postMessage("banner closed", "*");
+    });
+
+    function postHeight() {
+        window.parent.postMessage(
+            { type: "resize", height: document.body.scrollHeight },
+            "*"
+        );
+    }
+
+    const observer = new ResizeObserver(postHeight);
+    observer.observe(document.body);
+</script>

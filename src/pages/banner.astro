@@ -129,7 +129,6 @@ import Layout from "../layouts/Layout.astro";
 
 <script>
     const close = document.getElementById("close") as HTMLElement;
-    let date: Date = new Date();
 
     close.addEventListener("click", () => {
         window.parent.postMessage("banner closed", "*");

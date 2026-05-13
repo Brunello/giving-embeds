@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import ColumbiaCrown from "../assets/columbia-crown.svg";
 ---
 
-<Layout title="Giving to Columbia Popup">
+<Layout title="Alumni Survey Popup">
     <main>
         <div class="popup-container">
             <div class="popup">
@@ -11,26 +11,21 @@ import ColumbiaCrown from "../assets/columbia-crown.svg";
                     <img src={ColumbiaCrown.src} />
                 </div>
                 <div class="popup-content">
-                    <!-- <span>Tuesday, October 21, 2025</span> -->
-                    <h2>
-                        Make an impact and meet the calendar year-end giving
-                        deadline
-                    </h2>
+                    <h2>Last chance to make your voice heard!</h2>
                     <p>
-                        Before the calendar year comes to a close on Wednesday,
-                        December 31, 2025, at 11:59 p.m. EST, <strong
-                            >take action today and support an area of Columbia
-                            that is meaningful to you</strong
-                        >. By meeting this important deadline, you'll provide
-                        resources for students, faculty, and researchers in the
-                        upcoming semester.
+                        Deadline approaching: <strong
+                            >Friday, June 5, is the final day to participate in
+                            the all-alumni survey—and secure one of 50 Columbia
+                            sweatshirts.</strong
+                        > Join your University-wide community in sharing valuable
+                        feedback that will shape the future of your alumni experience.
                     </p>
                     <a
-                        href="https://www.givenow.columbia.edu/?ac=ZITS&utm_source=GivingSite&utm_medium=website&utm_campaign=CYE2025popup"
+                        href="https://survey.alchemer.com/s3/8757280/Columbia-2026-AAS?userid=webpopup"
                         class="btn btn-primary"
                         target="_blank"
                     >
-                        Give Now
+                        Take the Survey
                     </a>
                 </div>
                 <div id="close" class="close">x</div>
@@ -40,11 +35,11 @@ import ColumbiaCrown from "../assets/columbia-crown.svg";
 </Layout>
 
 <style>
-    * {
-        margin: 0 !important;
-    }
     html {
         background: transparent !important;
+    }
+    h2, p {
+        margin: 0;
     }
     .popup-container {
         position: fixed;
@@ -85,19 +80,11 @@ import ColumbiaCrown from "../assets/columbia-crown.svg";
     .popup-content {
         display: contents;
     }
-    .popup-content span {
-        /* font-family: gotham; */
-        color: #055ea9;
-        font-weight: 500;
-        font-size: 24px;
-        line-height: 1.33;
-        padding-bottom: 14px;
-    }
     .popup-content h2 {
         font-size: 36px;
         line-height: 1.125;
         font-weight: 700;
-        color: #003373;
+        color: #1d4f91;
         letter-spacing: -0.75px;
         padding: 0 90px 24px;
     }
@@ -110,11 +97,12 @@ import ColumbiaCrown from "../assets/columbia-crown.svg";
     }
     .popup-content a {
         padding: 13px 29px;
-        background-color: #fed302;
-        color: #003373;
+        background-color: #fff;
+        color: #1d4f91;
         font-size: 16px;
         text-decoration: none;
         font-weight: 700;
+        border: 2px solid #1d4f91;
     }
     p strong {
         font-weight: 700;
@@ -135,9 +123,6 @@ import ColumbiaCrown from "../assets/columbia-crown.svg";
         .popup {
             max-width: calc(90vw - 48px);
             padding: 107px 24px 56px;
-        }
-        .popup-content span {
-            font-size: 18px;
         }
         .popup-content h2 {
             font-size: 28px;
