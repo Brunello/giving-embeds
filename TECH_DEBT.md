@@ -41,26 +41,33 @@ Should settle on one approach: either self-host consistently or rely on host-sit
 
 The `.header-wrapper` top rule is written twice identically. One copy can be removed.
 
+### 6. Countdown deadlines rely on the visitor's browser timezone
+**Files:** `banner.astro`, `alumnibanner.astro`, `magbanner.astro`
+
+These parse the deadline with a bare local-time string, e.g. `new Date("12/31/2025 06:00 PM")`. That's interpreted in *each visitor's* timezone, so the countdown hits zero at a different real-world instant depending on where the user is.
+
+Fix: anchor the deadline to a fixed UTC offset using an ISO 8601 string, e.g. `new Date("2025-12-31T18:00:00-05:00")`. `FYE2026.astro` already does this. Note the offset is DST-dependent: Eastern is **-05:00 (EST)** in winter and **-04:00 (EDT)** roughly mid-March through early November — pick the offset that matches the deadline's date. Apply this to any new banner with a timer.
+
 ---
 
 ## Low Priority / Cleanup
 
-### 6. Stale Astro template boilerplate in `Layout.astro`
+### 7. Stale Astro template boilerplate in `Layout.astro`
 **File:** `src/layouts/Layout.astro`
 
 Lines 25–37 still contain the purple `--accent` CSS variables and dark `background: #13151a` from the Astro starter template. These don't affect embeds in practice (each page scopes its own styles), but they're dead code and make the Layout confusing.
 
-### 7. `postMessage` uses `"*"` as target origin
+### 8. `postMessage` uses `"*"` as target origin
 **Files:** All banner and popup pages
 
 `window.parent.postMessage("banner closed", "*")` broadcasts to any origin. Since these are always embedded on Columbia domains, the target origin can be locked down to `https://magazine.columbia.edu`, `https://www.columbia.edu`, etc. Minor security improvement.
 
-### 8. `* { margin: 0 !important }` in `popup.astro`
+### 9. `* { margin: 0 !important }` in `popup.astro`
 **File:** `src/pages/popup.astro` (line 44)
 
 Nuclear selector that overrides all child margins globally. Works fine in isolation today but will be a debugging headache if the popup gains more complex content. Replace with targeted resets on the specific elements that need it.
 
-### 9. `innerHTML` used for countdown text
+### 10. `innerHTML` used for countdown text
 **Files:** `banner.astro`, `alumnibanner.astro`, `magbanner.astro`
 
 The countdown uses `.innerHTML` to set values like `days + "D"`. Since this is not user input there's no XSS risk, but `.textContent` is more semantically correct for text nodes.
