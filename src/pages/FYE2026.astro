@@ -22,7 +22,7 @@ import Layout from "../layouts/Layout.astro";
                 <a
                     id="cta"
                     class="cta"
-                    href="https://www.givenow.columbia.edu/?ac=26CU147587WR&utm_source=CUmagazine&utm_medium=website&utm_campaign=FYE26banner"
+                    href="https://www.givenow.columbia.edu/?ac=26CU147588WR&utm_source=GivingSite&utm_medium=website&utm_campaign=FYE26banner"
                     target="_blank"
                 >
                     <span class="cta-text">Give Now</span>
@@ -36,8 +36,8 @@ import Layout from "../layouts/Layout.astro";
 <style>
     :root {
         --bg: #1d4f91;
-        --btn-bg: #fed302;
-        --btn-color: #003373;
+        --btn-bg: #bad9eb;
+        --btn-color: #1d4f91;
     }
     body {
         margin: 0;
@@ -131,15 +131,24 @@ import Layout from "../layouts/Layout.astro";
 </style>
 
 <script>
-    const configs: Record<string, { bg: string }> = {
+    const configs: Record<string, { url: string; bg: string; btnBg: string; btnColor: string }> = {
         giving: {
+            url: "https://www.givenow.columbia.edu/?ac=26CU147588WR&utm_source=GivingSite&utm_medium=website&utm_campaign=FYE26banner",
             bg: "#1d4f91",
+            btnBg: "#bad9eb",
+            btnColor: "#1d4f91",
         },
         alumni: {
+            url: "https://www.givenow.columbia.edu/?ac=26CU147595WR&utm_source=CAA&utm_medium=website&utm_campaign=FYE26banner",
             bg: "#1d4f91",
+            btnBg: "#bad9eb",
+            btnColor: "#1d4f91",
         },
         magazine: {
+            url: "https://www.givenow.columbia.edu/?ac=26CU147587WR&utm_source=CUmagazine&utm_medium=website&utm_campaign=FYE26banner",
             bg: "#395ea1",
+            btnBg: "#fed302",
+            btnColor: "#003373",
         },
     };
 
@@ -148,6 +157,10 @@ import Layout from "../layouts/Layout.astro";
 
     const root = document.documentElement;
     root.style.setProperty("--bg", config.bg);
+    root.style.setProperty("--btn-bg", config.btnBg);
+    root.style.setProperty("--btn-color", config.btnColor);
+
+    (document.getElementById("cta") as HTMLAnchorElement).href = config.url;
 
     const close = document.getElementById("close") as HTMLElement;
     close.addEventListener("click", () => {
