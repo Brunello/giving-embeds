@@ -1,0 +1,150 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ColumbiaCrown from "../assets/columbia-crown.svg";
+---
+
+<Layout title="FYE2026 Popup">
+    <main>
+        <div class="popup-container">
+            <div class="popup">
+                <div class="popup-image">
+                    <img src={ColumbiaCrown.src} />
+                </div>
+                <div class="popup-content">
+                    <p>
+                        Summer may be just beginning, yet we’re setting our
+                        sights on the upcoming academic year!
+                    </p>
+                    <p>
+                        Gifts made by Columbia’s fiscal year end on Tuesday,
+                        June 30, 2026, will provide your school or program with
+                        <strong
+                            >critical, immediate-use dollars to allot toward fall
+                            priorities.</strong
+                        >
+                    </p>
+                    <a
+                        href="https://www.givenow.columbia.edu/?ac=26CU147588WR&utm_source=GivingSite&utm_medium=website&utm_campaign=FYE26popup"
+                        class="btn btn-primary"
+                        target="_blank"
+                    >
+                        Give Now
+                    </a>
+                </div>
+                <div id="close" class="close">x</div>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    html {
+        background: transparent !important;
+    }
+    h2, p {
+        margin: 0;
+    }
+    .popup-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .popup {
+        position: relative;
+        width: 100%;
+        max-width: 745px;
+        background-color: #fff;
+        padding: 107px 56px 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+    .popup-image {
+        max-width: 174px;
+        position: absolute;
+        top: 0;
+        transform: translateY(-50%);
+        background: white;
+        border-radius: 50%;
+        padding: 25px;
+    }
+    .popup-image img {
+        width: 100%;
+    }
+    .popup-content {
+        display: contents;
+    }
+    .popup-content h2 {
+        font-size: 36px;
+        line-height: 1.125;
+        font-weight: 700;
+        color: #1d4f91;
+        letter-spacing: -0.75px;
+        padding: 0 90px 24px;
+    }
+    .popup-content p {
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.421;
+        color: #000;
+        padding-bottom: 32px;
+    }
+    .popup-content a {
+        padding: 13px 29px;
+        background-color: #1d4f91;
+        color: #ffffff;
+        font-size: 16px;
+        text-decoration: none;
+        font-weight: 700;
+        border: 2px solid #1d4f91;
+    }
+    p strong {
+        font-weight: 700;
+    }
+    #close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 20px;
+        color: #fff;
+        background: #2372b4;
+        padding: 4.5px 11px;
+        border-radius: 50%;
+        cursor: pointer;
+        transform: translate(50%, -50%);
+    }
+    @media (max-width: 767px) {
+        .popup {
+            max-width: calc(90vw - 48px);
+            padding: 107px 24px 56px;
+        }
+        .popup-content h2 {
+            font-size: 28px;
+            padding: 0 0 14px;
+        }
+        .popup-content p {
+            font-size: 16px;
+        }
+    }
+</style>
+
+<script>
+    const close = document.getElementById("close") as HTMLElement;
+    const popupContainer = document.querySelector(
+        ".popup-container"
+    ) as HTMLElement;
+
+    close.addEventListener("click", () => {
+        popupContainer.style.display = "none";
+        window.parent.postMessage("popup closed", "*");
+    });
+</script>
