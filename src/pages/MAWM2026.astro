@@ -1,0 +1,174 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Make-A-Will Month 2026 Banner">
+    <main>
+        <div class="banner-container">
+            <div class="banner-content">
+                <p>
+                    This National Make-a-Will Month, you can use your
+                    complimentary benefit to create or update your
+                    will—simply, securely, and at your own pace.
+                </p>
+            </div>
+            <div class="cta-container">
+                <a
+                    id="cta"
+                    class="cta"
+                    href="https://www.givingdocs.com/columbia-university/c/MAWM27GivingBanner"
+                    target="_blank"
+                >
+                    <span class="cta-text">Get Started</span>
+                </a>
+                <button id="close">X</button>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    :root {
+        --bg: #1d4f91;
+        --text: #ffffff;
+        --btn-bg: #e3f3fc;
+        --btn-color: #1d4f91;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .banner-container {
+        background-color: var(--bg);
+        color: var(--text);
+        display: flex;
+        justify-content: space-between;
+        padding: 0 9%;
+        width: calc(100% - 18%);
+        gap: 14px;
+    }
+    .banner-container.closed {
+        display: none;
+    }
+    .banner-content {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-shrink: 1;
+        min-width: 0;
+    }
+    .banner-content p span {
+        display: inline-block;
+    }
+    .cta-container {
+        display: flex;
+        align-items: center;
+        gap: 35px;
+        flex-shrink: 0;
+    }
+    .cta-container .cta {
+        background-color: var(--btn-bg);
+        color: var(--btn-color);
+        padding: 10px 24px;
+        font-size: 16px;
+        text-decoration: none;
+        font-weight: bold;
+        font-family: proxima-nova, sans-serif;
+        white-space: nowrap;
+    }
+    #close {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 1px solid var(--text);
+        color: var(--text);
+        font-size: 8px;
+        padding-inline: 0;
+        padding-top: 2px;
+        cursor: pointer;
+    }
+    @media screen and (max-width: 990px) {
+        .banner-container {
+            padding: 1em 2em;
+            width: calc(100% - 4em);
+            flex-direction: column;
+            justify-content: unset;
+            align-items: center;
+            gap: 1em;
+        }
+        .banner-content {
+            flex-direction: column;
+        }
+        .banner-content p {
+            margin: 0;
+            text-align: center;
+        }
+        #close {
+            position: absolute;
+            top: 1.5em;
+            right: 1.5em;
+        }
+        .cta-container {
+            min-width: unset;
+        }
+    }
+</style>
+
+<script>
+    const configs: Record<
+        string,
+        { url: string; bg: string; text: string; btnBg: string; btnColor: string }
+    > = {
+        giving: {
+            url: "https://www.givingdocs.com/columbia-university/c/MAWM27GivingBanner",
+            bg: "#1d4f91",
+            text: "#ffffff",
+            btnBg: "#e3f3fc",
+            btnColor: "#1d4f91",
+        },
+        alumni: {
+            url: "https://www.givingdocs.com/columbia-university/c/MAWM27CAABanner",
+            bg: "#093552",
+            text: "#ffffff",
+            btnBg: "#6cace4",
+            btnColor: "#093552",
+        },
+        magazine: {
+            // PLACEHOLDER URL — the magazine Giving Docs link isn't live yet, so
+            // this points at the alumni (CAA) code. Swap in MAWM27 magazine code
+            // when it's up, or magazine traffic will report as CAA.
+            url: "https://www.givingdocs.com/columbia-university/c/MAWM27CAABanner",
+            bg: "#007d8e",
+            text: "#ffffff",
+            btnBg: "#ffffff",
+            btnColor: "#007d8e",
+        },
+    };
+
+    const site = new URLSearchParams(window.location.search).get("site") ?? "giving";
+    const config = configs[site] ?? configs.giving;
+
+    const root = document.documentElement;
+    root.style.setProperty("--bg", config.bg);
+    root.style.setProperty("--text", config.text);
+    root.style.setProperty("--btn-bg", config.btnBg);
+    root.style.setProperty("--btn-color", config.btnColor);
+
+    (document.getElementById("cta") as HTMLAnchorElement).href = config.url;
+
+    const close = document.getElementById("close") as HTMLElement;
+    close.addEventListener("click", () => {
+        window.parent.postMessage("banner closed", "*");
+    });
+
+    function postHeight() {
+        window.parent.postMessage(
+            { type: "resize", height: document.body.scrollHeight },
+            "*"
+        );
+    }
+
+    const observer = new ResizeObserver(postHeight);
+    observer.observe(document.body);
+</script>
