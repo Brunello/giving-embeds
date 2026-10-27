@@ -1,6 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ColumbiaCrown from "../assets/columbia-crown.svg";
+import { popupPhases, currentPhase } from "../campaigns/CGD2026";
+
+const phase = currentPhase(popupPhases, Date.now());
 ---
 
 <Layout title="Columbia Giving Day 2026 Popup">
@@ -11,19 +14,19 @@ import ColumbiaCrown from "../assets/columbia-crown.svg";
                     <img src={ColumbiaCrown.src} />
                 </div>
                 <div class="popup-content">
-                    <h2>Wednesday, October 28, 2026</h2>
-                    <p>
-                        <strong>Mark your calendar for Columbia Giving Day.</strong><br />
-                        Join your Columbia community in supporting scholarship,
-                        research, and innovation.
+                    <h2 id="headline">
+                        {phase.headline.map((line, i) => <>{i > 0 && <br />}{line}</>)}
+                    </h2>
+                    <p id="supporting">
+                        {phase.lead && <><strong>{phase.lead}</strong><br /></>}
+                        {phase.body.map((line, i) => <>{i > 0 && <br />}{line}</>)}
                     </p>
                     <a
-                        href="https://givingday.columbia.edu/pages/columbia-giving-day-home?appeal_id=6ad28c45d6dbf72f7d158511&utm_source=Columbia%20Giving&utm_medium=website&utm_campaign=CGD2026popup"
+                        id="cta"
+                        href={phase.link}
                         class="btn btn-primary"
                         target="_blank"
-                    >
-                        Learn More
-                    </a>
+                    >{phase.cta}</a>
                 </div>
                 <div id="close" class="close">x</div>
             </div>
@@ -134,6 +137,8 @@ import ColumbiaCrown from "../assets/columbia-crown.svg";
 </style>
 
 <script>
+    import { popupPhases, currentPhase, clock } from "../campaigns/CGD2026";
+
     const close = document.getElementById("close") as HTMLElement;
     const popupContainer = document.querySelector(
         ".popup-container"
@@ -143,4 +148,40 @@ import ColumbiaCrown from "../assets/columbia-crown.svg";
         popupContainer.style.display = "none";
         window.parent.postMessage("popup closed", "*");
     });
+
+    const headline = document.getElementById("headline") as HTMLElement;
+    const supporting = document.getElementById("supporting") as HTMLElement;
+    const cta = document.getElementById("cta") as HTMLAnchorElement;
+
+    // Fills el with one text line per entry, separated by <br>, optionally
+    // led by a bold line.
+    function setLines(el: HTMLElement, lines: string[], lead?: string) {
+        el.replaceChildren();
+        if (lead) {
+            const strong = document.createElement("strong");
+            strong.textContent = lead;
+            el.append(strong, document.createElement("br"));
+        }
+        lines.forEach((line, i) => {
+            if (i > 0) el.append(document.createElement("br"));
+            el.append(line);
+        });
+    }
+
+    const now = clock();
+    let shown: (typeof popupPhases)[number] | undefined;
+
+    // Re-picks the phase each second, so a popup left open swaps copy at the
+    // boundary without a reload.
+    function tick() {
+        const phase = currentPhase(popupPhases, now());
+        if (phase === shown) return;
+        setLines(headline, phase.headline);
+        setLines(supporting, phase.body, phase.lead);
+        cta.textContent = phase.cta;
+        cta.href = phase.link;
+        shown = phase;
+    }
+    tick();
+    setInterval(tick, 1000);
 </script>

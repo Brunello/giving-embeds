@@ -1,5 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { bannerPhases, currentPhase } from "../campaigns/CGD2026";
+
+const phase = currentPhase(bannerPhases, Date.now());
 ---
 
 <Layout title="Columbia Giving Day 2026 Banner">
@@ -12,16 +15,16 @@ import Layout from "../layouts/Layout.astro";
                     <span id="minutes">00M</span>
                     <span id="seconds">00S</span>
                 </div>
-                <p>Columbia Giving Day is Wednesday, October&nbsp;28.</p>
+                <p id="message">{phase.message}</p>
             </div>
             <div class="cta-container">
                 <a
                     id="cta"
                     class="cta"
-                    href="https://givingday.columbia.edu/pages/columbia-giving-day-home?appeal_id=6ad28c45d6dbf72f7d158511&utm_source=Columbia%20Giving&utm_medium=website&utm_campaign=CGD2026banner"
+                    href={phase.links.giving}
                     target="_blank"
                 >
-                    <span class="cta-text">Learn More</span>
+                    <span id="cta-text" class="cta-text">{phase.cta}</span>
                 </a>
                 <button id="close">X</button>
             </div>
@@ -128,26 +131,25 @@ import Layout from "../layouts/Layout.astro";
 </style>
 
 <script>
+    import { bannerPhases, currentPhase, clock, type Site } from "../campaigns/CGD2026";
+
     const configs: Record<
-        string,
-        { url: string; bg: string; text: string; btnBg: string; btnColor: string }
+        Site,
+        { bg: string; text: string; btnBg: string; btnColor: string }
     > = {
         giving: {
-            url: "https://givingday.columbia.edu/pages/columbia-giving-day-home?appeal_id=6ad28c45d6dbf72f7d158511&utm_source=Columbia%20Giving&utm_medium=website&utm_campaign=CGD2026banner",
             bg: "#1d4f91",
             text: "#ffffff",
             btnBg: "#fed302",
             btnColor: "#003373",
         },
         alumni: {
-            url: "https://givingday.columbia.edu/pages/columbia-giving-day-home?appeal_id=6aaab528aa7a08360c97a94d&utm_source=CAA%20Marketing&utm_medium=website&utm_campaign=CGD2026banner",
             bg: "#1d4f91",
             text: "#ffffff",
             btnBg: "#fed302",
             btnColor: "#003373",
         },
         magazine: {
-            url: "https://givingday.columbia.edu/pages/columbia-giving-day-home?appeal_id=6ac8ebc99dbe822ff177b7c1&utm_source=Columbia%20Magazine&utm_medium=website&utm_campaign=CGD2026banner",
             bg: "#395ea1",
             text: "#ffffff",
             btnBg: "#fed302",
@@ -155,8 +157,9 @@ import Layout from "../layouts/Layout.astro";
         },
     };
 
-    const site = new URLSearchParams(window.location.search).get("site") ?? "giving";
-    const config = configs[site] ?? configs.giving;
+    const param = new URLSearchParams(window.location.search).get("site");
+    const site: Site = param && param in configs ? (param as Site) : "giving";
+    const config = configs[site];
 
     const root = document.documentElement;
     root.style.setProperty("--bg", config.bg);
@@ -164,49 +167,52 @@ import Layout from "../layouts/Layout.astro";
     root.style.setProperty("--btn-bg", config.btnBg);
     root.style.setProperty("--btn-color", config.btnColor);
 
-    (document.getElementById("cta") as HTMLAnchorElement).href = config.url;
-
     const close = document.getElementById("close") as HTMLElement;
     close.addEventListener("click", () => {
         window.parent.postMessage("banner closed", "*");
     });
 
-    // Anchor the deadline to a fixed UTC offset (ISO 8601) so the countdown
-    // ends at the same real-world instant for every visitor, regardless of
-    // their browser's timezone. Counts down to 11:59:59 PM Eastern on Tue
-    // Oct 27, the eve of Giving Day; DST runs until Nov 1, so Eastern = EDT =
-    // UTC-04:00.
-    var end: Date = new Date("2026-10-27T23:59:59-04:00");
+    const message = document.getElementById("message") as HTMLElement;
+    const cta = document.getElementById("cta") as HTMLAnchorElement;
+    const ctaText = document.getElementById("cta-text") as HTMLElement;
+    const daysElement = document.getElementById("days") as HTMLElement;
+    const hoursElement = document.getElementById("hours") as HTMLElement;
+    const minutesElement = document.getElementById("minutes") as HTMLElement;
+    const secondsElement = document.getElementById("seconds") as HTMLElement;
 
     var _second = 1000;
     var _minute = _second * 60;
     var _hour = _minute * 60;
     var _day = _hour * 24;
-    var timer: number;
 
-    function showRemaining() {
-        var now: Date = new Date();
-        var distance: number = end - now;
-        if (distance < 0) {
-            clearInterval(timer);
-            return;
+    const now = clock();
+    let shown: (typeof bannerPhases)[number] | undefined;
+
+    // Re-picks the phase each second, so an open page swaps copy at the
+    // boundary, then updates the countdown to that phase's deadline.
+    function tick() {
+        const t = now();
+        const phase = currentPhase(bannerPhases, t);
+        if (phase !== shown) {
+            message.textContent = phase.message;
+            ctaText.textContent = phase.cta;
+            cta.href = phase.links[site];
+            shown = phase;
         }
+
+        var distance = Math.max(0, Date.parse(phase.countdownTo) - t);
         var days = Math.floor(distance / _day);
         var hours = Math.floor((distance % _day) / _hour);
         var minutes = Math.floor((distance % _hour) / _minute);
         var seconds = Math.floor((distance % _minute) / _second);
-
-        const daysElement = document.getElementById("days") as HTMLElement;
-        const hoursElement = document.getElementById("hours") as HTMLElement;
-        const minutesElement = document.getElementById("minutes") as HTMLElement;
-        const secondsElement = document.getElementById("seconds") as HTMLElement;
 
         daysElement.innerHTML = days + "D";
         hoursElement.innerHTML = hours + "H";
         minutesElement.innerHTML = minutes + "M";
         secondsElement.innerHTML = seconds + "S";
     }
-    timer = setInterval(showRemaining, 1000);
+    tick();
+    setInterval(tick, 1000);
 
     function postHeight() {
         window.parent.postMessage(
