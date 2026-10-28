@@ -17,7 +17,10 @@ export interface BannerPhase {
     start: string;
     message: string;
     cta: string;
-    countdownTo: string;
+    // Clock deadline; omit for no clock.
+    countdownTo?: string;
+    // Shown in a clock-styled box left of the message; omit to hide it.
+    giftCount?: string;
     links: Record<Site, string>;
 }
 
@@ -58,6 +61,13 @@ export const bannerPhases: BannerPhase[] = [
         countdownTo: "2026-10-28T23:59:59-04:00",
         links: BANNER_LINKS,
     },
+    {
+        // Post Giving Day. Add giftCount once the final number is in.
+        start: "2026-10-29T00:00:00-04:00",
+        message: "Thank you for your generosity on Columbia Giving Day.",
+        cta: "See Your Impact",
+        links: BANNER_LINKS,
+    },
 ];
 
 export const popupPhases: PopupPhase[] = [
@@ -81,6 +91,16 @@ export const popupPhases: PopupPhase[] = [
             "Amplify the impact of your gift through Columbia Giving Day Challenges—happening today\u00a0only.",
         ],
         cta: "Give Now",
+        link: POPUP_LINK,
+    },
+    {
+        // Post Giving Day
+        start: "2026-10-29T00:00:00-04:00",
+        headline: ["Thank you for your generosity."],
+        body: [
+            "On Columbia Giving Day on Wednesday, October 28, the University-wide community came together to support students, faculty, and researchers.",
+        ],
+        cta: "See Your Impact",
         link: POPUP_LINK,
     },
 ];
