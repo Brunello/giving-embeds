@@ -3,13 +3,15 @@ import Layout from "../layouts/Layout.astro";
 import { bannerPhases, currentPhase } from "../campaigns/CGD2026";
 
 const phase = currentPhase(bannerPhases, Date.now());
+// Hidden once the phase's deadline has passed, rather than sitting at zero.
+const showClock = Date.parse(phase.countdownTo) > Date.now();
 ---
 
 <Layout title="Columbia Giving Day 2026 Banner">
     <main>
         <div class="banner-container">
             <div class="banner-content">
-                <div class="countdown">
+                <div id="countdown" class="countdown" style={showClock ? undefined : "display: none"}>
                     <span id="days">00D</span>
                     <span id="hours">00H</span>
                     <span id="minutes">00M</span>
@@ -175,6 +177,7 @@ const phase = currentPhase(bannerPhases, Date.now());
     const message = document.getElementById("message") as HTMLElement;
     const cta = document.getElementById("cta") as HTMLAnchorElement;
     const ctaText = document.getElementById("cta-text") as HTMLElement;
+    const countdown = document.getElementById("countdown") as HTMLElement;
     const daysElement = document.getElementById("days") as HTMLElement;
     const hoursElement = document.getElementById("hours") as HTMLElement;
     const minutesElement = document.getElementById("minutes") as HTMLElement;
@@ -201,6 +204,9 @@ const phase = currentPhase(bannerPhases, Date.now());
         }
 
         var distance = Math.max(0, Date.parse(phase.countdownTo) - t);
+        // Hide the clock rather than show zeros, e.g. between the pre-day
+        // deadline and the Giving Day switch.
+        countdown.style.display = distance > 0 ? "" : "none";
         var days = Math.floor(distance / _day);
         var hours = Math.floor((distance % _day) / _hour);
         var minutes = Math.floor((distance % _hour) / _minute);
