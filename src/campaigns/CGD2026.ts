@@ -51,8 +51,8 @@ export const bannerPhases: BannerPhase[] = [
         links: BANNER_LINKS,
     },
     {
-        // Day of Giving Day
-        start: "2026-10-28T00:00:00-04:00",
+        // Day of Giving Day (9AM ET, per spec)
+        start: "2026-10-28T09:00:00-04:00",
         message: "Today is Columbia Giving Day!",
         cta: "Give Now",
         countdownTo: "2026-10-28T23:59:59-04:00",
@@ -73,8 +73,8 @@ export const popupPhases: PopupPhase[] = [
         link: POPUP_LINK,
     },
     {
-        // Day of Giving Day
-        start: "2026-10-28T00:00:00-04:00",
+        // Day of Giving Day (9AM ET, per spec)
+        start: "2026-10-28T09:00:00-04:00",
         headline: ["Wednesday, October 28, 2026", "Today is Columbia Giving Day!"],
         body: [
             "Join your University community in supporting scholarship, research, and innovation.",
