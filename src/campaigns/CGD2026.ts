@@ -62,10 +62,11 @@ export const bannerPhases: BannerPhase[] = [
         links: BANNER_LINKS,
     },
     {
-        // Post Giving Day. Add giftCount once the final number is in.
+        // Post Giving Day. Final count: 12,477 gifts.
         start: "2026-10-29T00:00:00-04:00",
         message: "Thank you for your generosity on Columbia Giving Day.",
         cta: "See Your Impact",
+        giftCount: "12,477 GIFTS",
         links: BANNER_LINKS,
     },
 ];
