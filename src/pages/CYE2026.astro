@@ -6,12 +6,6 @@ import Layout from "../layouts/Layout.astro";
     <main>
         <div class="banner-container">
             <div class="banner-content">
-                <div class="countdown">
-                    <span id="days">00D</span>
-                    <span id="hours">00H</span>
-                    <span id="minutes">00M</span>
-                    <span id="seconds">00S</span>
-                </div>
                 <p>
                     Make an impact before 2026 comes to a close! Support Columbia
                     students, faculty, and researchers by the year-end giving
@@ -62,16 +56,6 @@ import Layout from "../layouts/Layout.astro";
         gap: 14px;
         flex-shrink: 1;
         min-width: 0;
-    }
-    .countdown {
-        display: flex;
-        gap: 6px;
-    }
-    .countdown span {
-        border: 2px solid #6dacde;
-        background: #003373;
-        padding: 5px 7px;
-        font-weight: bold;
     }
     .banner-content p span {
         display: inline-block;
@@ -174,43 +158,6 @@ import Layout from "../layouts/Layout.astro";
     close.addEventListener("click", () => {
         window.parent.postMessage("banner closed", "*");
     });
-
-    // Anchor the deadline to a fixed UTC offset (ISO 8601) so the countdown
-    // ends at the same real-world instant for every visitor, regardless of
-    // their browser's timezone. Counts down to the year-end giving deadline,
-    // 11:59:59 PM Eastern on Thu Dec 31; December is standard time, so
-    // Eastern = EST = UTC-05:00.
-    var end: Date = new Date("2026-12-31T23:59:59-05:00");
-
-    var _second = 1000;
-    var _minute = _second * 60;
-    var _hour = _minute * 60;
-    var _day = _hour * 24;
-    var timer: number;
-
-    function showRemaining() {
-        var now: Date = new Date();
-        var distance: number = end - now;
-        if (distance < 0) {
-            clearInterval(timer);
-            return;
-        }
-        var days = Math.floor(distance / _day);
-        var hours = Math.floor((distance % _day) / _hour);
-        var minutes = Math.floor((distance % _hour) / _minute);
-        var seconds = Math.floor((distance % _minute) / _second);
-
-        const daysElement = document.getElementById("days") as HTMLElement;
-        const hoursElement = document.getElementById("hours") as HTMLElement;
-        const minutesElement = document.getElementById("minutes") as HTMLElement;
-        const secondsElement = document.getElementById("seconds") as HTMLElement;
-
-        daysElement.innerHTML = days + "D";
-        hoursElement.innerHTML = hours + "H";
-        minutesElement.innerHTML = minutes + "M";
-        secondsElement.innerHTML = seconds + "S";
-    }
-    timer = setInterval(showRemaining, 1000);
 
     function postHeight() {
         window.parent.postMessage(
